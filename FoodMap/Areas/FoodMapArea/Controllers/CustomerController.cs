@@ -11,10 +11,21 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
     {
         private superuniversityEntities db = new superuniversityEntities();
         // GET: FoodMapArea/Customer
+
+        
         public ActionResult Index()
         {
+            Random r = new Random();
+            ViewBag.num = r.Next(3, 8);
+            return View(db.Shop.Find(ViewBag.num));
+        }
+
+        public ActionResult GetImage(int id = 1)
+        {
             
-            return View(db.Shop.Find(1));
+            Shop shop = db.Shop.Find(id);
+            byte[] img = shop.BytesImage1;
+            return File(img, "image/jpeg");
         }
     }
 }
