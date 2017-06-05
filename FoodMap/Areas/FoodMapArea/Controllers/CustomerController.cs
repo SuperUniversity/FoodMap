@@ -27,5 +27,11 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
             byte[] img = shop.BytesImage1;
             return File(img, "image/jpeg");
         }
+
+        public ActionResult Map(int i = 1)
+        {
+
+            return View();
+        }
     }
 }

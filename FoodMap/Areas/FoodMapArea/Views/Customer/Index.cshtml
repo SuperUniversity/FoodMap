@@ -5,6 +5,8 @@
 
 @section styles{
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/assets/owl.carousel.min.css"></link>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/assets/owl.theme.default.min.css"></link>
     <style>
         #ad{
             width:70%;
@@ -55,9 +57,23 @@
             margin:3px;
             float:right;
         }
+        .right-label{
+            font-size:25px;
+            font-family:'Microsoft JhengHei';
+            font-weight:bold;
+            margin-top:0px;
+        }
+        .item{
+            text-align:center;
+        }
+        .owls{
+            cursor:pointer;
+        }
     </style>
     
     }
+
+
 <div id="adarea">
     <img id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_1.jpg" />
 </div>
@@ -108,31 +124,90 @@
                     <br />
                     @Html.ActionLink("more...", "", "", new { @class = "more" })
                     <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                 </div>
             </div>
 
             <div class="col-md-9">
+                <label class="right-label">推薦店家：</label>
                 <div class="col-md-12" id="right-div">
                     <div class="col-md-5">
                         <img src="@Url.Action("GetImage",new { id=ViewBag.num})" class="img-thumbnail" width="300px" height="170px" />
                     </div>
                     <div class="col-md-7">
-                        <p style="font-size:20px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p=>p.ShopName)</p>
+                        <p style="font-size:30px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p=>p.ShopName)</p>
                         <hr />
                         <p style="font-size:16px;font-family:'Microsoft JhengHei'">@Html.DisplayTextFor(p=>p.Description)</p>
-                        @Html.ActionLink("點我看詳細","","")
-                        <p style="font-size:12px;font-family:'Microsoft JhengHei';float:right">點我看詳細</p>
                         <hr />
                         @Html.LabelFor(p=>p.Address) : @Html.DisplayTextFor(p=>p.Address)　　@Html.LabelFor(p=>p.Phone) : @Html.DisplayTextFor(p=>p.Phone)
                         <br />
                         @Html.LabelFor(p=>p.BusinessTime) : @Html.DisplayTextFor(p=>p.BusinessTime)
+                        <div style="float:right">@Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary" })</div>
+                    </div>
+                </div>
+                <br />
+                <hr />
+                <br />
+                <label class="right-label">熱門分類：</label>
+                <div class="col-md-12" id="right-div">
+                    <div class="col-md-5">
+                        <img src="~/Areas/FoodMapArea/WebImages/jpfood.jpg" class="img-thumbnail" width="300px" height="270px" />
+                    </div>
+                    <div class="col-md-7">
+                        <p style="font-size:30px;font-family:'Microsoft JhengHei';font-weight:bold">日式料理大蒐秘</p>
+                        <hr />
+                        <p style="font-size:16px;font-family:'Microsoft JhengHei'">日本料理泛指日本的飲食文化，又稱和食（日語：和食；更側重日本大和族的飲食），是日本文化重要的一環。「日本料理」在日語解作「日本式烹飪」。日本料理是日本人日常的傳統飲食，特別是在明治時代（19世紀末至20世紀初）所形成的飲食文化和習慣，這是因為東西方食材交融所產生的衝擊，雖然日本在海島上能夠取得的香料食材就很多元了。因而被稱為「眼睛的料理」。</p>
+                        <hr />
+                        <div style="float:right">@Html.ActionLink("點我看相關店家", "", "", new { }, new { @class = "btn btn-primary" })</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <br />
+    <br />
+    <label class="right-label">精選店家</label>
+    <hr />
+    <div class="owl-carousel owl-theme">
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/1.jpg" />極鮮饌</div></a>
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/2.jpg" />炎官日式燒肉</div></a>
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/3.jpg" />笑居樂食居酒屋</div></a>
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/4.jpg" />發福廚房</div></a>
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/5.jpg" />Gyuho Burger & Fries 牛宝</div></a>
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/6.jpg" />林家匠</div></a>
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/7.jpg" />森巴廚房餐坊</div></a>
+    </div>
 </div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 @section scripts{
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
-    }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/owl.carousel.min.js"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        })
+    </script>
+}

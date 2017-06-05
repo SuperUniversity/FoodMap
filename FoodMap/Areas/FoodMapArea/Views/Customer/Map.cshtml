@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "地圖找美食";
+}
+
+@section styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        #ad{
+            width:70%;
+            height:150px;
+        }
+        #adarea{
+            background-color:antiquewhite;
+            text-align:center;
+        }
+    </style>
+ }
+
+<div id="adarea">
+    <img id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_1.jpg" />
+</div>
+<div class="container">
+    <div id="map" style="width: 600px; height:600px"></div> 
+</div>
+
+@section scripts{
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyDXAOlGQEDh6e3iIetcst09MEM3X_Ew2ns" type="text/javascript"></script> 
+    <script type="text/javascript">
+
+	  var geocoder;
+	  var map;
+	  var address = '高雄市左營區重愛路11號12樓';
+	  var address1 = '高雄市左營區文慈路99號';
+
+	  map = new GMap2(document.getElementById("map"));         // 建立地圖物件
+	  map.addControl(new GLargeMapControl());                  // 加入地圖縮放工具
+	  map.addControl(new GMapTypeControl());                   // 加入地圖切換的工具
+	  geocoder = new GClientGeocoder();                        // 建立新的地理編碼物件
+	  geocoder.getLocations(address, addToMap);                //  檢索位置資訊，將它傳遞給 addToMap()
+      geocoder.getLocations(address1,addToMap)
+
+	  // 此函數會將點加入到地圖
+	  function addToMap(response) {
+	    place = response.Placemark[0];                         // 檢索物件
+	    point = new GLatLng(place.Point.coordinates[1],place.Point.coordinates[0]);       // 檢索緯度和經度
+	    map.setCenter(point, 13);                              // 以這一點為地圖中心
+	    marker = new GMarker(point);                           // 建立標記
+	    map.addOverlay(marker);                                // 將標記加入到地圖
+	    marker.openInfoWindowHtml(place.address);              // 將位址資訊加入到標記
+	  }
+	</script> 
+
+
+    }

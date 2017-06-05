@@ -111,7 +111,15 @@
       <LastGenOutput>FoodMapModel.cs</LastGenOutput>
     </Content>
     <Content Include="Areas\FoodMapArea\ShopImages\nopic.jpg" />
+    <Content Include="Areas\FoodMapArea\WebImages\1.jpg" />
+    <Content Include="Areas\FoodMapArea\WebImages\2.jpg" />
+    <Content Include="Areas\FoodMapArea\WebImages\3.jpg" />
+    <Content Include="Areas\FoodMapArea\WebImages\4.jpg" />
+    <Content Include="Areas\FoodMapArea\WebImages\5.jpg" />
+    <Content Include="Areas\FoodMapArea\WebImages\6.jpg" />
+    <Content Include="Areas\FoodMapArea\WebImages\7.jpg" />
     <Content Include="Areas\FoodMapArea\WebImages\delicacy_banner_1.jpg" />
+    <Content Include="Areas\FoodMapArea\WebImages\jpfood.jpg" />
     <Content Include="Areas\FoodMapArea\WebImages\school.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -131,6 +139,7 @@
     <Content Include="Areas\FoodMapArea\Models\FoodMapModel.edmx.diagram">
       <DependentUpon>FoodMapModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\FoodMapArea\Views\Customer\Map.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
