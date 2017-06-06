@@ -1,0 +1,7 @@
+﻿@model IEnumerable<FoodMap.Areas.FoodMapArea.Models.Shop>
+
+
+@foreach(var shop in Model)
+{
+    <p>@Html.DisplayFor(p=>shop.ShopName)</p>
+}

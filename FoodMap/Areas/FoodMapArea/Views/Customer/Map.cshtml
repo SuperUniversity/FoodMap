@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<FoodMap.Areas.FoodMapArea.Models.Shop>
 @{
     ViewBag.Title = "地圖找美食";
 }
@@ -14,21 +14,73 @@
             background-color:antiquewhite;
             text-align:center;
         }
+        #cf{
+            background-color:wheat;
+        }
     </style>
  }
 
 <div id="adarea">
     <img id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_1.jpg" />
 </div>
+<div class="container-fluid" id="cf" style="padding:10px">
+    <div class="row">
+        <div class="container" style="border:1px solid grey">
+            <div class="row">
+                <div class="col-md-12" style="margin:10px">
+                        @using (Html.BeginForm("Map", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            @Html.Action("PartialMap")
+                        }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div id="map" style="width: 600px; height:600px"></div> 
 </div>
-
+<br />
+<div class="container">
+    <hr />
+    <p style="color:green;font-size:24px;font-family:'Microsoft JhengHei';font-weight:bold">搜尋結果：</p>
+</div>
+<br />
+<div id="showmap" class="container">
+    <div class="row">
+        <div class="col-md-12" style="text-align:center">
+            @foreach (var shop in Model)
+            {
+                <div class="col-md-4" style="margin-top:10px;border:1px solid grey;border-radius:10px">
+                    <img src="@Url.Action("GetImage",new { id=shop.ShopID})" class="img-thumbnail" style="width:250px;height:250px;margin-top:10px" />
+                    <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.ShopName)</p>
+                    <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Address)</p>
+                    <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Phone)</p>
+                    @Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary" })
+                    <br />
+                    <br />
+                </div>
+            }
+         </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 @section scripts{
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyDXAOlGQEDh6e3iIetcst09MEM3X_Ew2ns" type="text/javascript"></script> 
     <script type="text/javascript">
-
+        
 	  var geocoder;
 	  var map;
 	  var address = '高雄市左營區重愛路11號12樓';
@@ -50,6 +102,10 @@
 	    map.addOverlay(marker);                                // 將標記加入到地圖
 	    marker.openInfoWindowHtml(place.address);              // 將位址資訊加入到標記
 	  }
+
+	  
+	  
+
 	</script> 
 
 

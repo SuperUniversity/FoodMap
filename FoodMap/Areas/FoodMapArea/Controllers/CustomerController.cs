@@ -28,10 +28,34 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
             return File(img, "image/jpeg");
         }
 
-        public ActionResult Map(int i = 1)
+        [HttpGet]
+        public ActionResult Map()
         {
+            
+            
+            ViewBag.categories = db.FoodCategory.ToList();
+            ViewBag.cities = db.City.ToList();
+            ViewBag.schools = db.School.ToList();
+            return View(db.Shop.ToList());
+        }
 
-            return View();
+       
+        [HttpPost]
+        public ActionResult Map(int CityID=1,int SchoolID=1,int FoodCategoryID=1)
+        {
+            var result = from p in db.Shop
+                         where p.CityID == CityID && p.SchoolID == SchoolID && p.FoodCategoryID == FoodCategoryID
+                         select p;
+            return View(result.ToList());
+            
+        }
+
+        public ActionResult PartialMap()
+        {
+            ViewBag.categories = db.FoodCategory.ToList();
+            ViewBag.cities = db.City.ToList();
+            ViewBag.schools = db.School.ToList();
+            return PartialView();
         }
     }
 }

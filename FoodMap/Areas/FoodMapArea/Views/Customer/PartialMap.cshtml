@@ -1,0 +1,26 @@
+﻿@model FoodMap.Areas.FoodMapArea.Models.Shop
+<div class="form-group">
+    <label class="col-md-2">縣市名稱：</label>
+    <div class="col-md-10">
+        @{
+            var cities = new SelectList(ViewBag.cities, "CityID", "CityName");
+            var schools = new SelectList(ViewBag.schools, "SchoolID", "SchoolName");
+            var categories = new SelectList(ViewBag.categories, "FoodCategoryID", "FoodCategoryName");
+        }
+
+        @Html.DropDownListFor(p => p.CityID, cities, "請選擇縣市", new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2">學校名稱：</label>
+    <div class="col-md-10">
+        @Html.DropDownListFor(p => p.SchoolID, schools, "請選擇學校", new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2">分類名稱：</label>
+    <div class="col-md-10">
+        @Html.DropDownListFor(p => p.FoodCategoryID, categories, "請選擇分類", new { @class = "form-control" })
+        <button id="subbtn" type="submit" class="btn btn-primary" style="float:right;width:200px;margin-right:50px">送出</button>
+    </div>
+</div>

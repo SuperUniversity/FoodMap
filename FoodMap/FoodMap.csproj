@@ -140,6 +140,8 @@
       <DependentUpon>FoodMapModel.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\FoodMapArea\Views\Customer\Map.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\Customer\GetMap.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\Customer\PartialMap.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
