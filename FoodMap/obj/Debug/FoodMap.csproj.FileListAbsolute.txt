@@ -41,3 +41,4 @@ D:\MVC\FoodMap\FoodMap\bin\zh-Hant\System.Web.Helpers.resources.dll
 D:\MVC\FoodMap\FoodMap\bin\zh-Hant\System.Web.Mvc.resources.dll
 D:\MVC\FoodMap\FoodMap\obj\Debug\FoodMap.dll
 D:\MVC\FoodMap\FoodMap\obj\Debug\FoodMap.pdb
+D:\MVC\FoodMap\FoodMap\obj\Debug\FoodMap.csprojResolveAssemblyReference.cache

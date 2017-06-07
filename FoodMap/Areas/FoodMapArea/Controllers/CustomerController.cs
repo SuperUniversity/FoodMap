@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FoodMap.Areas.FoodMapArea.Models;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace FoodMap.Areas.FoodMapArea.Controllers
 {
@@ -36,26 +38,106 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
             ViewBag.categories = db.FoodCategory.ToList();
             ViewBag.cities = db.City.ToList();
             ViewBag.schools = db.School.ToList();
-            return View(db.Shop.ToList());
+            return View();
+            //db.Shop.ToList()
         }
 
        
         [HttpPost]
         public ActionResult Map(int CityID=1,int SchoolID=1,int FoodCategoryID=1)
         {
-            var result = from p in db.Shop
+            //var result = from p in db.Shop
+            //             where p.CityID == CityID && p.SchoolID == SchoolID && p.FoodCategoryID == FoodCategoryID
+            //             select p;
+
+            var result = from p in db.Shop join
+                         s in db.School on p.SchoolID equals s.SchoolID
                          where p.CityID == CityID && p.SchoolID == SchoolID && p.FoodCategoryID == FoodCategoryID
-                         select p;
+                         select new  Temp {
+                             ShopID = p.ShopID,
+                             Address = p.Address,
+                             Phone = p.Phone,
+                             Image1 = p.Image1,
+                             BytesImage1 = p.BytesImage1,
+                             Description = p.Description,
+                             Cost = p.Cost,
+                             BusinessTime = p.BusinessTime,
+                             ShopName = p.ShopName,
+                             FoodCategoryID = p.FoodCategoryID,
+                             Image2 = p.Image2,
+                             BytesImage2 = p.BytesImage2,
+                             Image3 = p.Image3,
+                             BytesImage3 = p.BytesImage3,
+                             ShopLink = p.ShopLink,
+                             CityID = p.CityID,
+                             SchoolID = p.SchoolID,
+                             SchoolName = s.SchoolName,
+                         };
+            if (SchoolID == 1)
+            {
+                ViewBag.name = "國立台灣大學";
+                ViewBag.add1 = "台北市大安區忠孝東路四段235號2樓";
+                ViewBag.add2 = "台北市大安區安和路二段217巷2弄3號2樓";
+            }
+            else if(SchoolID == 6)
+            {
+                ViewBag.name = "國立台灣藝術大學";
+                ViewBag.add1 = "新北市中和區立德街56號";
+                ViewBag.add2 = "新北市板橋區民權路3號";
+            }
             return View(result.ToList());
             
         }
 
-        public ActionResult PartialMap()
+        public ActionResult PartialList()
+        {
+            return View(db.Shop.ToList());
+        }
+
+        public ActionResult PartialDrop()
         {
             ViewBag.categories = db.FoodCategory.ToList();
             ViewBag.cities = db.City.ToList();
             ViewBag.schools = db.School.ToList();
             return PartialView();
         }
+    }
+    public class Temp {
+
+        [DisplayName("餐廳編號")]
+        public int ShopID { get; set; }
+        [DisplayName("地址")]
+        public string Address { get; set; }
+        [DisplayName("電話")]
+        public string Phone { get; set; }
+        [DisplayName("圖片1")]
+        public string Image1 { get; set; }
+        public byte[] BytesImage1 { get; set; }
+        [DisplayName("介紹")]
+        [DataType(DataType.MultilineText)]
+        public string Description { get; set; }
+        [DisplayName("平均消費")]
+        public string Cost { get; set; }
+        [DisplayName("營業時間")]
+        public string BusinessTime { get; set; }
+        [DisplayName("餐廳名稱")]
+        public string ShopName { get; set; }
+        [DisplayName("分類編號")]
+        public Nullable<int> FoodCategoryID { get; set; }
+        [DisplayName("圖片2")]
+        public string Image2 { get; set; }
+        public byte[] BytesImage2 { get; set; }
+        [DisplayName("圖片3")]
+        public string Image3 { get; set; }
+        public byte[] BytesImage3 { get; set; }
+        [DisplayName("粉絲專頁")]
+        public string ShopLink { get; set; }
+        [DisplayName("縣市編號")]
+        public Nullable<int> CityID { get; set; }
+        [DisplayName("學校編號")]
+        public Nullable<int> SchoolID { get; set; }
+
+        [DisplayName("學校名稱")]
+        public string SchoolName { get; set; }
     }
 }

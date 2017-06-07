@@ -1,4 +1,6 @@
-﻿@model IEnumerable<FoodMap.Areas.FoodMapArea.Models.Shop>
+﻿@model IEnumerable<FoodMap.Areas.FoodMapArea.Controllers.Temp>
+
+
 @{
     ViewBag.Title = "地圖找美食";
 }
@@ -25,20 +27,48 @@
 </div>
 <div class="container-fluid" id="cf" style="padding:10px">
     <div class="row">
-        <div class="container" style="border:1px solid grey">
+        <div class="container" style="border:1px solid grey;border-radius:10px">
             <div class="row">
                 <div class="col-md-12" style="margin:10px">
                         @using (Html.BeginForm("Map", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
                         {
-                            @Html.Action("PartialMap")
+                            @Html.Action("PartialDrop")
                         }
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="container">
-    <div id="map" style="width: 600px; height:600px"></div> 
+<div class="container" >
+    <div class="row">
+        <div class="col-md-12" style="margin-top:20px">
+            <div class="col-lg-3">
+                @{ 
+                    Random r = new Random();
+                    int a = r.Next(1, 4);
+                }
+                <div style="height:600px;">
+                    @if (a == 1)
+                    {
+                        <a href="#"><img src="~/Areas/FoodMapArea/WebImages/ad1.jpg" style="height:590px;width:250px"/></a>
+                    }
+                    else if (a == 2)
+                    {
+                        <a href="#"><img src="~/Areas/FoodMapArea/WebImages/ad2.png" style="height:590px;width:250px"/></a>
+                    }
+                    else
+                    {
+                        <a href="#"><img src="~/Areas/FoodMapArea/WebImages/ad3.jpg" style="height:590px;width:250px"/></a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div id="map" style="width: 820px; height:600px"></div> 
+            </div>
+        </div>
+        
+    </div>
+    
 </div>
 <br />
 <div class="container">
@@ -49,18 +79,29 @@
 <div id="showmap" class="container">
     <div class="row">
         <div class="col-md-12" style="text-align:center">
-            @foreach (var shop in Model)
-            {
-                <div class="col-md-4" style="margin-top:10px;border:1px solid grey;border-radius:10px">
-                    <img src="@Url.Action("GetImage",new { id=shop.ShopID})" class="img-thumbnail" style="width:250px;height:250px;margin-top:10px" />
-                    <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.ShopName)</p>
-                    <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Address)</p>
-                    <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Phone)</p>
-                    @Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary" })
-                    <br />
-                    <br />
-                </div>
-            }
+           @if (HttpContext.Current.Request.HttpMethod.Equals("POST"))
+           {
+               foreach (var shop in Model)
+                    {
+                        <div class="col-md-4" style="margin-top:10px;border:1px solid grey;border-radius:10px">
+                            <img src="@Url.Action("GetImage",new { id=shop.ShopID})" class="img-thumbnail" style="width:250px;height:250px;margin-top:10px" />
+                            <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.ShopName)</p>
+                            <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Address)</p>
+                            <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Phone)</p>
+                            <p >@Html.HiddenFor(p => shop.SchoolName)</p>
+                            @Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary" })
+                            <br />
+                            <br />
+                        </div>
+                    }
+           }
+           else
+           {
+               @Html.Action("PartialList")
+           }
+
+
+
          </div>
     </div>
 </div>
@@ -80,31 +121,45 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyDXAOlGQEDh6e3iIetcst09MEM3X_Ew2ns" type="text/javascript"></script> 
     <script type="text/javascript">
-        
+
 	  var geocoder;
 	  var map;
-	  var address = '高雄市左營區重愛路11號12樓';
-	  var address1 = '高雄市左營區文慈路99號';
+
+        if ('@ViewBag.name' !=  "") {
+            var address = '@ViewBag.name';
+        } else {
+            var address = '106台北市大安區復興南路一段390號';
+        }
+
+        if ('@ViewBag.add1' != "") {
+            var address1 = '@ViewBag.add1';
+        }
+
+        if ('@ViewBag.add2' != "") {
+            var address2 = '@ViewBag.add2';
+        }
 
 	  map = new GMap2(document.getElementById("map"));         // 建立地圖物件
 	  map.addControl(new GLargeMapControl());                  // 加入地圖縮放工具
 	  map.addControl(new GMapTypeControl());                   // 加入地圖切換的工具
 	  geocoder = new GClientGeocoder();                        // 建立新的地理編碼物件
+	  geocoder.getLocations(address1, addToMap);
+	  geocoder.getLocations(address2, addToMap);
 	  geocoder.getLocations(address, addToMap);                //  檢索位置資訊，將它傳遞給 addToMap()
-      geocoder.getLocations(address1,addToMap)
+
 
 	  // 此函數會將點加入到地圖
 	  function addToMap(response) {
 	    place = response.Placemark[0];                         // 檢索物件
 	    point = new GLatLng(place.Point.coordinates[1],place.Point.coordinates[0]);       // 檢索緯度和經度
-	    map.setCenter(point, 13);                              // 以這一點為地圖中心
+	    map.setCenter(point, 14);                              // 以這一點為地圖中心
 	    marker = new GMarker(point);                           // 建立標記
 	    map.addOverlay(marker);                                // 將標記加入到地圖
 	    marker.openInfoWindowHtml(place.address);              // 將位址資訊加入到標記
 	  }
 
-	  
-	  
+
+
 
 	</script> 
 
