@@ -34,14 +34,44 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
         }
 
         [HttpGet]
-        public ActionResult Map()
+        public ActionResult Map(int? CityID = 1, int? SchoolID = 1, int? FoodCategoryID = 1,int t=0)
         {
-            
-            
+            var result = from p in db.Shop
+                         join s in db.School on p.SchoolID equals s.SchoolID
+                         where p.CityID == CityID && p.SchoolID == SchoolID && p.FoodCategoryID == FoodCategoryID
+                         select new Temp
+                         {
+                             ShopID = p.ShopID,
+                             Address = p.Address,
+                             Phone = p.Phone,
+                             Image1 = p.Image1,
+                             BytesImage1 = p.BytesImage1,
+                             Description = p.Description,
+                             Cost = p.Cost,
+                             BusinessTime = p.BusinessTime,
+                             ShopName = p.ShopName,
+                             FoodCategoryID = p.FoodCategoryID,
+                             Image2 = p.Image2,
+                             BytesImage2 = p.BytesImage2,
+                             Image3 = p.Image3,
+                             BytesImage3 = p.BytesImage3,
+                             ShopLink = p.ShopLink,
+                             CityID = p.CityID,
+                             SchoolID = p.SchoolID,
+                             SchoolName = s.SchoolName,
+                         };
+            if (SchoolID == 15)
+            {
+                ViewBag.name = "國立體育大學";
+                ViewBag.add1 = "桃園市龜山區大湖村文興路39號";
+                ViewBag.add2 = "桃園市龜山區文化一路226號";
+            }
+
+
             ViewBag.categories = db.FoodCategory.ToList();
             ViewBag.cities = db.City.ToList();
             ViewBag.schools = db.School.ToList();
-            return View();
+            return View(result.ToList());
             //db.Shop.ToList()
         }
 

@@ -90,7 +90,8 @@
                     @Html.ActionLink("國立台灣科技大學", "", "", new { @class = "schoolname" })
                     <br />
                     @Html.ActionLink("國立交通大學", "", "", new { @class = "schoolname" })
-                    @Ajax.ActionLink("國立體育大學", "Map", new { CityID = 4, SchoolID = 15, FoodCategoryID =9 }, new AjaxOptions { HttpMethod = "POST" }, new { @class = "schoolname" })
+                    @Html.ActionLink("國立體育大學","Map","Customer",new {CityID=4,SchoolID=15,FoodCategoryID=9 },new { @class = "schoolname" })
+                   @* @Ajax.ActionLink("國立體育大學","Map","Customer", new { CityID = 4, SchoolID = 15, FoodCategoryID = 9 }, new AjaxOptions(){HttpMethod = "Post" }, new { @class = "schoolname" })*@
                     <br />
                     @Html.ActionLink("more...", "", "", new { @class = "more" })
                     <br />
@@ -191,7 +192,8 @@
 <br />
 @section scripts{
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/owl.carousel.min.js"></script>
+
     <script>
         $('.owl-carousel').owlCarousel({
             loop: true,
