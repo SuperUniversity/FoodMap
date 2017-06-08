@@ -29,7 +29,7 @@
     <div class="row">
         <div class="container" style="border:1px solid grey;border-radius:10px">
             <div class="row">
-                <div class="col-md-12" style="margin:10px">
+                <div class="col-md-12" id="pdl" style="margin:10px">
                         @using (Html.BeginForm("Map", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
                         {
                             @Html.Action("PartialDrop")
@@ -120,6 +120,7 @@
 @section scripts{
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyDXAOlGQEDh6e3iIetcst09MEM3X_Ew2ns" type="text/javascript"></script> 
+
     <script type="text/javascript">
 
 	  var geocoder;
@@ -162,6 +163,6 @@
 
 
 	</script> 
-
+    
 
     }

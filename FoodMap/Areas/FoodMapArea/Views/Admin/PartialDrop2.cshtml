@@ -40,8 +40,8 @@
 
 
 <div class="form-group">
-    <label class="col-md-2">縣市名稱：</label>
-    <div class="col-md-10">
+    <label class="col-sm-2 control-label">縣市名稱</label>
+    <div class="col-sm-10">
         @{
             //var cities = new SelectList(ViewBag.cities, "CityID", "CityName");
             //var schools = new SelectList(ViewBag.schools, "SchoolID", "SchoolName");
@@ -54,20 +54,17 @@
     </div>
 </div>
 <div class="form-group">
-    <label class="col-md-2">學校名稱：</label>
-    <div class="col-md-10">
+    <label class="col-sm-2 control-label">學校名稱</label>
+    <div class="col-sm-10">
         @*@Html.DropDownListFor(p => p.SchoolID, schools, "請選擇學校", new { @class = "form-control" })*@
         <select id="SchoolID" class="form-control" name="SchoolID"><option>---請先選擇縣市---</option></select>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-md-2">分類名稱：</label>
-    <div class="col-md-10">
+    <label class="col-sm-2 control-label">分類名稱</label>
+    <div class="col-sm-10">
         @Html.DropDownListFor(p => p.FoodCategoryID, categories, "請選擇分類", new { @class = "form-control" })
         @*@Html.DropDownList("FoodCategoryID", null, new { id = "FoodCategoryID", @class = "form-control" })*@
-
-
-        <button id="subbtn" type="submit" class="btn btn-primary" style="float:right;width:200px;margin-right:50px">送出</button>
     </div>
 </div>
 

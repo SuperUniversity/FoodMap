@@ -90,7 +90,7 @@
                     @Html.ActionLink("國立台灣科技大學", "", "", new { @class = "schoolname" })
                     <br />
                     @Html.ActionLink("國立交通大學", "", "", new { @class = "schoolname" })
-                    @Html.ActionLink("明新科技大學", "", "", new { @class = "schoolname" })
+                    @Ajax.ActionLink("國立體育大學", "Map", new { CityID = 4, SchoolID = 15, FoodCategoryID =9 }, new AjaxOptions { HttpMethod = "POST" }, new { @class = "schoolname" })
                     <br />
                     @Html.ActionLink("more...", "", "", new { @class = "more" })
                     <br />
@@ -106,7 +106,7 @@
                     <br />
                     <hr />
                     <div class="schoolarea"><span class="glyphicon glyphicon-education"></span>  南部</div>
-                    @Html.ActionLink("國立嘉義大學", "", "", new { @class = "schoolname" })
+                    @Html.ActionLink("國立嘉義大學", "Map", "Customer",new { SchoolID=40 }, new { @class = "schoolname" })
                     @Html.ActionLink("國立中正大學", "", "", new { @class = "schoolname" })
                     <br />
                     @Html.ActionLink("國立台南大學", "", "", new { @class = "schoolname" })

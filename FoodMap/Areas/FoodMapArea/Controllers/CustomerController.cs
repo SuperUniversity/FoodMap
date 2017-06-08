@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using FoodMap.Areas.FoodMapArea.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace FoodMap.Areas.FoodMapArea.Controllers
 {
@@ -21,6 +23,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
             ViewBag.num = r.Next(3, 8);
             return View(db.Shop.Find(ViewBag.num));
         }
+
 
         public ActionResult GetImage(int id = 1)
         {
@@ -44,7 +47,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
 
        
         [HttpPost]
-        public ActionResult Map(int CityID=1,int SchoolID=1,int FoodCategoryID=1)
+        public ActionResult Map(int? CityID=1,int? SchoolID=1,int? FoodCategoryID=1)
         {
             //var result = from p in db.Shop
             //             where p.CityID == CityID && p.SchoolID == SchoolID && p.FoodCategoryID == FoodCategoryID
@@ -94,13 +97,59 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
             return View(db.Shop.ToList());
         }
 
+      
         public ActionResult PartialDrop()
         {
             ViewBag.categories = db.FoodCategory.ToList();
-            ViewBag.cities = db.City.ToList();
+
+            SelectList selectList = new SelectList(this.GetCity(), "CityID", "CityName");
+
+            ViewBag.cities = selectList;
+
             ViewBag.schools = db.School.ToList();
+
             return PartialView();
         }
+
+        private IEnumerable<City> GetCity()
+        {
+            using (superuniversityEntities db = new superuniversityEntities())
+            {
+                var query = db.City.OrderBy(x => x.CityID);
+                return query.ToList();
+            }
+        }
+
+        [HttpPost]
+        public JsonResult Schools(int CityID)
+        {
+            List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
+
+            if (CityID>0)
+            {
+                var schools = this.GetSchool(CityID);
+                if (schools.Count() > 0)
+                {
+                    foreach (var school in schools)
+                    {
+                        items.Add(new KeyValuePair<string, string>(
+                            school.SchoolID.ToString(),
+                            school.SchoolName.ToString()));
+                    }
+                }
+            }
+            return this.Json(items);
+        }
+
+        private IEnumerable<School> GetSchool(int CityID)
+        {
+            using (superuniversityEntities db = new superuniversityEntities())
+            {
+                var query = db.School.Where(x => x.CityID == CityID);
+                return query.ToList();
+            }
+        }
+
     }
     public class Temp {
 

@@ -59,7 +59,57 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
             return View();
         }
 
-    
+        public ActionResult PartialDrop2()
+        {
+            ViewBag.categories = db.FoodCategory.ToList();
+
+            SelectList selectList = new SelectList(this.GetCity(), "CityID", "CityName");
+
+            ViewBag.cities = selectList;
+
+            ViewBag.schools = db.School.ToList();
+
+            return PartialView();
+        }
+
+        private IEnumerable<City> GetCity()
+        {
+            using (superuniversityEntities db = new superuniversityEntities())
+            {
+                var query = db.City.OrderBy(x => x.CityID);
+                return query.ToList();
+            }
+        }
+
+        [HttpPost]
+        public JsonResult Schools(int CityID)
+        {
+            List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
+
+            if (CityID > 0)
+            {
+                var schools = this.GetSchool(CityID);
+                if (schools.Count() > 0)
+                {
+                    foreach (var school in schools)
+                    {
+                        items.Add(new KeyValuePair<string, string>(
+                            school.SchoolID.ToString(),
+                            school.SchoolName.ToString()));
+                    }
+                }
+            }
+            return this.Json(items);
+        }
+
+        private IEnumerable<School> GetSchool(int CityID)
+        {
+            using (superuniversityEntities db = new superuniversityEntities())
+            {
+                var query = db.School.Where(x => x.CityID == CityID);
+                return query.ToList();
+            }
+        }
 
 
         [HttpPost]
