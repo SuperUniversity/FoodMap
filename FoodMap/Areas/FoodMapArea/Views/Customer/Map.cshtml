@@ -74,7 +74,7 @@
 <br />
 <div class="container">
     <hr />
-    <p style="color:green;font-size:24px;font-family:'Microsoft JhengHei';font-weight:bold">搜尋結果：</p>
+    <p style="color:orangered;font-size:24px;font-family:'Microsoft JhengHei';font-weight:bold"><span class="glyphicon glyphicon-check" style="color:darkgreen"></span>  搜尋結果</p>
 </div>
 <br />
 <div id="showmap" class="container">
@@ -84,13 +84,13 @@
            {
                foreach (var shop in Model)
                     {
-                        <div class="col-md-4" style="margin-top:10px;border:1px solid grey;border-radius:10px">
-                            <img src="@Url.Action("GetImage",new { id=shop.ShopID})" class="img-thumbnail" style="width:250px;height:250px;margin-top:10px" />
-                            <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.ShopName)</p>
+                        <div class="col-md-4" style="margin-top:10px;">
+                            <img src="@Url.Action("GetImage",new { id=shop.ShopID})" style="width:250px;height:250px;margin-top:10px" />
+                            <p style="font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.ShopName)</p>
                             <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Address)</p>
                             <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Phone)</p>
                             <p >@Html.HiddenFor(p => shop.SchoolName)</p>
-                            @Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary", style = "font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold" })
                             <br />
                             <br />
                         </div>
@@ -99,21 +99,28 @@
            else
            {
 
-
-               foreach (var shop in Model)
+               if (ViewBag.check == 1)
                {
-                <div class="col-md-4" style="margin-top:10px;border:1px solid grey;border-radius:10px">
-                    <img src="@Url.Action("GetImage",new { id=shop.ShopID})" class="img-thumbnail" style="width:250px;height:250px;margin-top:10px" />
-                    <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.ShopName)</p>
-                    <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Address)</p>
-                    <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Phone)</p>
-                    <p>@Html.HiddenFor(p => shop.SchoolName)</p>
-                    @Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary" })
-                    <br />
-                    <br />
-                </div>
+                   foreach (var shop in Model)
+                   {
+                    <div class="col-md-4" style="margin-top:10px;">
+                        <img src="@Url.Action("GetImage",new { id=shop.ShopID})" style="width:250px;height:250px;margin-top:10px" />
+                        <p style="font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.ShopName)</p>
+                        <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Address)</p>
+                        <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Phone)</p>
+                        <p>@Html.HiddenFor(p => shop.SchoolName)</p>
+                        @Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary", style = "font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold" })
+                        <br />
+                        <br />
+                    </div>
+                   }
+
                }
-               @*@Html.Action("PartialList")*@
+               else
+               {
+                @Html.Action("PartialList")
+               }
+
            }
 
 

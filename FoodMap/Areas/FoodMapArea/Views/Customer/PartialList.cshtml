@@ -2,13 +2,13 @@
 
 @foreach (var shop in Model)
 {
-<div class="col-md-4" style="margin-top:10px;border:1px solid grey;border-radius:10px">
-    <img src="@Url.Action("GetImage",new { id=shop.ShopID})" class="img-thumbnail" style="width:250px;height:250px;margin-top:10px" />
-    <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.ShopName)</p>
-    <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Address)</p>
-    <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Phone)</p>
-    @Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary" })
-    <br />
-    <br />
-</div>
+    <div class="col-md-4" style="margin-top:10px;">
+        <img src="@Url.Action("GetImage",new { id=shop.ShopID})" style="width:250px;height:250px;margin-top:10px" />
+        <p style="font-size:16px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.ShopName)</p>
+        <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Address)</p>
+        <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Phone)</p>
+        @Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary", style = "font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold" })
+        <br />
+        <br />
+    </div>
 }

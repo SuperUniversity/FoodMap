@@ -34,14 +34,23 @@
         }
 
     </script>
-
+    <style>
+        .toplabel{
+            text-align:right;
+            margin-top:10px;
+            margin-left:50px;
+            font-size:20px;
+            font-family:'Microsoft JhengHei';
+            font-weight:bold;
+        }
+    </style>
 
 </head>
 
 
 <div class="form-group">
-    <label class="col-md-2">縣市名稱：</label>
-    <div class="col-md-10">
+    
+    <div class="form-inline">
         @{
             //var cities = new SelectList(ViewBag.cities, "CityID", "CityName");
             //var schools = new SelectList(ViewBag.schools, "SchoolID", "SchoolName");
@@ -50,24 +59,27 @@
         }
 
         @*@Html.DropDownListFor(p=>p.CityID, cities, "請選擇縣市", new { @class = "form-control" })*@
-        @Html.DropDownList("CityID", (SelectList)ViewBag.cities, "請選擇縣市", new { id = "CityID",@class= "form-control" })
+        <label class="toplabel">縣市名稱：</label>
+        @Html.DropDownList("CityID", (SelectList)ViewBag.cities, "請選擇縣市", new { id = "CityID",@class = "form-control",style= "width:500px;font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold" })
     </div>
 </div>
 <div class="form-group">
-    <label class="col-md-2">學校名稱：</label>
-    <div class="col-md-10">
+    
+    <div class="form-inline">
         @*@Html.DropDownListFor(p => p.SchoolID, schools, "請選擇學校", new { @class = "form-control" })*@
-        <select id="SchoolID" class="form-control" name="SchoolID"><option>---請先選擇縣市---</option></select>
+        <label class="toplabel">學校名稱：</label>
+        <select id="SchoolID" class="form-control" name="SchoolID" style="width:500px;font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold"><option>---請先選擇縣市---</option></select>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-md-2">分類名稱：</label>
-    <div class="col-md-10">
-        @Html.DropDownListFor(p => p.FoodCategoryID, categories, "請選擇分類", new { @class = "form-control" })
+    
+    <div class="form-inline">
+        <label class="toplabel">分類名稱：</label>
+        @Html.DropDownListFor(p => p.FoodCategoryID, categories, "請選擇分類", new { @class = "form-control", style = "width:500px;font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold" })
         @*@Html.DropDownList("FoodCategoryID", null, new { id = "FoodCategoryID", @class = "form-control" })*@
 
-
-        <button id="subbtn" type="submit" class="btn btn-primary" style="float:right;width:200px;margin-right:50px">送出</button>
+        
+        <button id="subbtn" type="submit" class="btn btn-primary" style="float:right;width:200px;margin-right:80px;font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold"><span class="glyphicon glyphicon-search"></span>  送出</button>
     </div>
 </div>
 

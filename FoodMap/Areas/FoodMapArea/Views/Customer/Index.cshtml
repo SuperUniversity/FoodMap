@@ -119,7 +119,7 @@
                     @Html.ActionLink("國立台灣科技大學", "", "", new { @class = "schoolname" })
                     <br />
                     @Html.ActionLink("國立交通大學", "", "", new { @class = "schoolname" })
-                    @Html.ActionLink("國立體育大學","Map","Customer",new {CityID=4,SchoolID=15,FoodCategoryID=9 },new { @class = "schoolname" })
+                    @Html.ActionLink("國立體育大學","Map","Customer",new {CityID=4,SchoolID=15},new { @class = "schoolname" })
                    @* @Ajax.ActionLink("國立體育大學","Map","Customer", new { CityID = 4, SchoolID = 15, FoodCategoryID = 9 }, new AjaxOptions(){HttpMethod = "Post" }, new { @class = "schoolname" })*@
                     <br />
                     @Html.ActionLink("more...", "", "", new { @class = "more" })
@@ -181,7 +181,7 @@
                         @Html.LabelFor(p=>p.BusinessTime, new { @class = "words" }) : @Html.DisplayTextFor(p=>p.BusinessTime)
                         <br />
                         <br />
-                        <div style="float:right">@Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary" })</div>
+                        <div style="float:right">@Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary", style= "font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold" })</div>
                     </div>
                    
                 </div>
@@ -200,7 +200,7 @@
                         <br />
                         <p style="font-size:16px;font-family:'Microsoft JhengHei'">日本料理泛指日本的飲食文化，又稱和食（日語：和食；更側重日本大和族的飲食），是日本文化重要的一環。「日本料理」在日語解作「日本式烹飪」。日本料理是日本人日常的傳統飲食，特別是在明治時代（19世紀末至20世紀初）所形成的飲食文化和習慣，這是因為東西方食材交融所產生的衝擊，雖然日本在海島上能夠取得的香料食材就很多元了。因而被稱為「眼睛的料理」。</p>
                         <br />
-                        <div style="float:right">@Html.ActionLink("點我看相關店家", "", "", new { }, new { @class = "btn btn-primary" })</div>
+                        <div style="float:right">@Html.ActionLink("點我看相關店家", "", "", new { }, new { @class = "btn btn-primary", style = "font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold" })</div>
                     </div>
                 </div>
             </div>
