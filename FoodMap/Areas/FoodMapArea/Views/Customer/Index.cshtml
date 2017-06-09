@@ -27,13 +27,14 @@
             margin-right:15px;
         }
         #left-div{
-            border:1px solid black;
-            background-color:lightgray;
+            /*border:1px solid black;*/
+            background-color:rgb(243, 243, 243);
             padding:5px;
+            height:770px;
         }
         #right-div{
-            border:1px solid black;
-            background-color:antiquewhite;
+            /*border:1px solid black;*/
+            /*background-color:antiquewhite;*/
             padding:10px;
         }
         #firstContainer{
@@ -48,17 +49,29 @@
             font-size:15px;
             font-family:'Microsoft JhengHei';
             font-weight:bold;
+            color:black;
             margin:3px;
+            
+        }
+        .schoolname:hover{
+            color:orangered;
+            text-decoration:none;
         }
         .more{
             font-size:15px;
             font-family:'Microsoft JhengHei';
             font-weight:bold;
+            color:black;
             margin:3px;
             float:right;
+            
+        }
+        .more:hover{
+            color:orangered;
+            text-decoration:none;
         }
         .right-label{
-            font-size:25px;
+            font-size:28px;
             font-family:'Microsoft JhengHei';
             font-weight:bold;
             margin-top:0px;
@@ -68,6 +81,21 @@
         }
         .owls{
             cursor:pointer;
+            color:black;
+        }
+        .owls:hover{
+            color:orangered;
+            text-decoration:none;
+        }
+        .words{
+            font-family:'Microsoft JhengHei';
+            font-weight:bold;
+            font-size:16px;
+        }
+        .owlwords{
+            font-size:22px;
+            font-family:'Microsoft JhengHei';
+            font-weight:bold;
         }
     </style>
     
@@ -86,6 +114,7 @@
                     <span id="schooltext">學校找美食</span>
                     <hr />
                     <div class="schoolarea"><span class="glyphicon glyphicon-education"></span>  北部</div>
+                    <br />
                     @Html.ActionLink("國立台灣大學","","",new {@class="schoolname" })
                     @Html.ActionLink("國立台灣科技大學", "", "", new { @class = "schoolname" })
                     <br />
@@ -97,6 +126,7 @@
                     <br />
                     <hr />
                     <div class="schoolarea"><span class="glyphicon glyphicon-education"></span>  中部</div>
+                    <br />
                     @Html.ActionLink("國立中興大學", "", "", new { @class = "schoolname" })
                     @Html.ActionLink("南開科技大學", "", "", new { @class = "schoolname" })
                     <br />
@@ -107,6 +137,7 @@
                     <br />
                     <hr />
                     <div class="schoolarea"><span class="glyphicon glyphicon-education"></span>  南部</div>
+                    <br />
                     @Html.ActionLink("國立嘉義大學", "Map", "Customer",new { SchoolID=40 }, new { @class = "schoolname" })
                     @Html.ActionLink("國立中正大學", "", "", new { @class = "schoolname" })
                     <br />
@@ -117,6 +148,7 @@
                     <br />
                     <hr />
                     <div class="schoolarea"><span class="glyphicon glyphicon-education"></span>  東部</div>
+                    <br />
                     @Html.ActionLink("國立宜蘭大學", "", "", new { @class = "schoolname" })
                     @Html.ActionLink("慈濟科技大學", "", "", new { @class = "schoolname" })
                     <br />
@@ -134,53 +166,62 @@
             </div>
 
             <div class="col-md-9">
-                <label class="right-label">推薦店家：</label>
+                <label class="right-label"><span class="glyphicon glyphicon-chevron-right" style="color:darkgreen"></span><span style="color:orangered">推薦</span>店家</label>
                 <div class="col-md-12" id="right-div">
                     <div class="col-md-5">
-                        <img src="@Url.Action("GetImage",new { id=ViewBag.num})" class="img-thumbnail" style="width:300px;height:300px" />
+                        <img src="@Url.Action("GetImage",new { id=ViewBag.num})" style="width:300px;height:300px" />
                     </div>
                     <div class="col-md-7">
                         <p style="font-size:30px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p=>p.ShopName)</p>
-                        <hr />
-                        <p style="font-size:16px;font-family:'Microsoft JhengHei'">@Html.DisplayTextFor(p=>p.Description)</p>
-                        <hr />
-                        @Html.LabelFor(p=>p.Address) : @Html.DisplayTextFor(p=>p.Address)　　@Html.LabelFor(p=>p.Phone) : @Html.DisplayTextFor(p=>p.Phone)
                         <br />
-                        @Html.LabelFor(p=>p.BusinessTime) : @Html.DisplayTextFor(p=>p.BusinessTime)
+                        <p style="font-size:16px;font-family:'Microsoft JhengHei'">@Html.DisplayTextFor(p=>p.Description)</p>
+                        <br />
+                        @Html.LabelFor(p=>p.Address,new {@class="words" }) : @Html.DisplayTextFor(p=>p.Address)　　@Html.LabelFor(p=>p.Phone, new { @class = "words" }) : @Html.DisplayTextFor(p=>p.Phone)
+                        <br />
+                        @Html.LabelFor(p=>p.BusinessTime, new { @class = "words" }) : @Html.DisplayTextFor(p=>p.BusinessTime)
+                        <br />
+                        <br />
                         <div style="float:right">@Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary" })</div>
                     </div>
+                   
                 </div>
                 <br />
-                <hr />
+                <div class="col-md-12">
+                    <hr />
+                </div>
                 <br />
-                <label class="right-label">熱門分類：</label>
+                <label class="right-label"><span class="glyphicon glyphicon-chevron-right" style="color:darkgreen"></span><span style="color:orangered">熱門</span>分類</label>
                 <div class="col-md-12" id="right-div">
                     <div class="col-md-5">
-                        <img src="~/Areas/FoodMapArea/WebImages/jpfood.jpg" class="img-thumbnail" width="300px" height="270px" />
+                        <img src="~/Areas/FoodMapArea/WebImages/jpfood.jpg" style="width:300px;height:300px" />
                     </div>
                     <div class="col-md-7">
                         <p style="font-size:30px;font-family:'Microsoft JhengHei';font-weight:bold">日式料理大蒐秘</p>
-                        <hr />
+                        <br />
                         <p style="font-size:16px;font-family:'Microsoft JhengHei'">日本料理泛指日本的飲食文化，又稱和食（日語：和食；更側重日本大和族的飲食），是日本文化重要的一環。「日本料理」在日語解作「日本式烹飪」。日本料理是日本人日常的傳統飲食，特別是在明治時代（19世紀末至20世紀初）所形成的飲食文化和習慣，這是因為東西方食材交融所產生的衝擊，雖然日本在海島上能夠取得的香料食材就很多元了。因而被稱為「眼睛的料理」。</p>
-                        <hr />
+                        <br />
                         <div style="float:right">@Html.ActionLink("點我看相關店家", "", "", new { }, new { @class = "btn btn-primary" })</div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-md-12">
+            <hr />
+        </div>
     </div>
     <br />
     <br />
-    <label class="right-label">精選店家</label>
-    <hr />
+    <label class="right-label"><span class="glyphicon glyphicon-chevron-right" style="color:darkgreen"></span><span style="color:orangered">精選</span>店家</label>
+    <br />
+    <br />
     <div class="owl-carousel owl-theme">
-        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/1.jpg" />極鮮饌</div></a>
-        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/2.jpg" />炎官日式燒肉</div></a>
-        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/3.jpg" />笑居樂食居酒屋</div></a>
-        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/4.jpg" />發福廚房</div></a>
-        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/5.jpg" />Gyuho Burger & Fries 牛宝</div></a>
-        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/6.jpg" />林家匠</div></a>
-        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/7.jpg" />森巴廚房餐坊</div></a>
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/1.jpg" /><span class="owlwords">極鮮饌</span></div></a>
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/2.jpg" /><span class="owlwords">炎官日式燒肉</span></div></a>
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/3.jpg" /><span class="owlwords">笑居樂食居酒屋</span></div></a>
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/4.jpg" /><span class="owlwords">發福廚房</span></div></a>
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/5.jpg" /><span class="owlwords">Gyuho Burger & Fries 牛宝</span></div></a>
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/6.jpg" /><span class="owlwords">林家匠</span></div></a>
+        <a class="owls"><div class="item"><img src="~/Areas/FoodMapArea/WebImages/7.jpg" /><span class="owlwords">森巴廚房餐坊</span></div></a>
     </div>
 </div>
 
