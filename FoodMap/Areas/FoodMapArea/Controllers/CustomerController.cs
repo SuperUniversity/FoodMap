@@ -34,12 +34,13 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
         }
 
         [HttpGet]
-        public ActionResult Map(int? CityID = 1, int? SchoolID = 1, int? FoodCategoryID = 1,int t=0)
+        public ActionResult Map(int? CityID = 1, int? SchoolID = 1, int? FoodCategoryID = 0,int t=0)
         {
-            if (FoodCategoryID == 1)
+            if (FoodCategoryID == 0)
             {
                 var result = from p in db.Shop
                              join s in db.School on p.SchoolID equals s.SchoolID
+                             join f in db.FoodCategory on p.FoodCategoryID equals f.FoodCategoryID
                              where p.CityID == CityID && p.SchoolID == SchoolID
                              select new Temp
                              {
@@ -61,6 +62,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
                                  CityID = p.CityID,
                                  SchoolID = p.SchoolID,
                                  SchoolName = s.SchoolName,
+                                 FoodCategoryName = f.FoodCategoryName
                              };
                 if (SchoolID == 15)
                 {
@@ -68,6 +70,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
                     ViewBag.name = "國立體育大學";
                     ViewBag.add1 = "桃園市龜山區大湖村文興路39號";
                     ViewBag.add2 = "桃園市龜山區文化一路226號";
+                    ViewBag.add3 = "桃園市龜山區復興三路667號";
                 }
 
 
@@ -81,6 +84,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
             {
                 var result = from p in db.Shop
                              join s in db.School on p.SchoolID equals s.SchoolID
+                             join f in db.FoodCategory on p.FoodCategoryID equals f.FoodCategoryID
                              where p.CityID == CityID && p.SchoolID == SchoolID && p.FoodCategoryID == FoodCategoryID
                              select new Temp
                              {
@@ -102,6 +106,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
                                  CityID = p.CityID,
                                  SchoolID = p.SchoolID,
                                  SchoolName = s.SchoolName,
+                                 FoodCategoryName = f.FoodCategoryName
                              };
                 if (SchoolID == 15)
                 {
@@ -109,6 +114,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
                     ViewBag.name = "國立體育大學";
                     ViewBag.add1 = "桃園市龜山區大湖村文興路39號";
                     ViewBag.add2 = "桃園市龜山區文化一路226號";
+                    ViewBag.add3 = "桃園市龜山區復興三路667號";
                 }
 
 
@@ -124,16 +130,107 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
 
        
         [HttpPost]
-        public ActionResult Map(int? CityID=1,int? SchoolID=1,int? FoodCategoryID=1)
+        public ActionResult Map(int? CityID=1,int? SchoolID=1,int? FoodCategoryID=0)
         {
             //var result = from p in db.Shop
             //             where p.CityID == CityID && p.SchoolID == SchoolID && p.FoodCategoryID == FoodCategoryID
             //             select p;
+            if (FoodCategoryID == 0)
+            {
+                var result = from p in db.Shop
+                             join s in db.School on p.SchoolID equals s.SchoolID
+                             join f in db.FoodCategory on p.FoodCategoryID equals f.FoodCategoryID
+                             where p.CityID == CityID && p.SchoolID == SchoolID
+                             select new Temp
+                             {
+                                 ShopID = p.ShopID,
+                                 Address = p.Address,
+                                 Phone = p.Phone,
+                                 Image1 = p.Image1,
+                                 BytesImage1 = p.BytesImage1,
+                                 Description = p.Description,
+                                 Cost = p.Cost,
+                                 BusinessTime = p.BusinessTime,
+                                 ShopName = p.ShopName,
+                                 FoodCategoryID = p.FoodCategoryID,
+                                 Image2 = p.Image2,
+                                 BytesImage2 = p.BytesImage2,
+                                 Image3 = p.Image3,
+                                 BytesImage3 = p.BytesImage3,
+                                 ShopLink = p.ShopLink,
+                                 CityID = p.CityID,
+                                 SchoolID = p.SchoolID,
+                                 SchoolName = s.SchoolName,
+                                 FoodCategoryName = f.FoodCategoryName
+                             };
+                if (SchoolID == 1)
+                {
+                    ViewBag.name = "國立台灣大學";
+                    ViewBag.add1 = "台北市大安區忠孝東路四段235號2樓";
+                    ViewBag.add2 = "台北市大安區安和路二段217巷2弄3號2樓";
+                    ViewBag.add3 = "台北市大安區光復南路260巷30號";
+                }
+                else if (SchoolID == 6)
+                {
+                    ViewBag.name = "國立台灣藝術大學";
+                    ViewBag.add1 = "新北市中和區立德街56號";
+                    ViewBag.add2 = "新北市板橋區民權路3號";
+                }
+                return View(result.ToList());
+            }
+            else
+            {
+                var result = from p in db.Shop
+                             join s in db.School on p.SchoolID equals s.SchoolID
+                             join f in db.FoodCategory on p.FoodCategoryID equals f.FoodCategoryID
+                             where p.CityID == CityID && p.SchoolID == SchoolID && p.FoodCategoryID == FoodCategoryID
+                             select new Temp
+                             {
+                                 ShopID = p.ShopID,
+                                 Address = p.Address,
+                                 Phone = p.Phone,
+                                 Image1 = p.Image1,
+                                 BytesImage1 = p.BytesImage1,
+                                 Description = p.Description,
+                                 Cost = p.Cost,
+                                 BusinessTime = p.BusinessTime,
+                                 ShopName = p.ShopName,
+                                 FoodCategoryID = p.FoodCategoryID,
+                                 Image2 = p.Image2,
+                                 BytesImage2 = p.BytesImage2,
+                                 Image3 = p.Image3,
+                                 BytesImage3 = p.BytesImage3,
+                                 ShopLink = p.ShopLink,
+                                 CityID = p.CityID,
+                                 SchoolID = p.SchoolID,
+                                 SchoolName = s.SchoolName,
+                                 FoodCategoryName = f.FoodCategoryName
+                             };
+                if (SchoolID == 1)
+                {
+                    ViewBag.name = "國立台灣大學";
+                    ViewBag.add1 = "台北市大安區忠孝東路四段235號2樓";
+                    ViewBag.add2 = "台北市大安區安和路二段217巷2弄3號2樓";
+                }
+                else if (SchoolID == 6)
+                {
+                    ViewBag.name = "國立台灣藝術大學";
+                    ViewBag.add1 = "新北市中和區立德街56號";
+                    ViewBag.add2 = "新北市板橋區民權路3號";
+                }
+                return View(result.ToList());
+            }
+            
+            
+        }
 
-            var result = from p in db.Shop join
-                         s in db.School on p.SchoolID equals s.SchoolID
-                         where p.CityID == CityID && p.SchoolID == SchoolID && p.FoodCategoryID == FoodCategoryID
-                         select new  Temp {
+        public ActionResult PartialList()
+        {
+            var result = from p in db.Shop
+                         join s in db.School on p.SchoolID equals s.SchoolID
+                         join f in db.FoodCategory on p.FoodCategoryID equals f.FoodCategoryID
+                         select new Temp
+                         {
                              ShopID = p.ShopID,
                              Address = p.Address,
                              Phone = p.Phone,
@@ -152,26 +249,9 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
                              CityID = p.CityID,
                              SchoolID = p.SchoolID,
                              SchoolName = s.SchoolName,
+                             FoodCategoryName = f.FoodCategoryName
                          };
-            if (SchoolID == 1)
-            {
-                ViewBag.name = "國立台灣大學";
-                ViewBag.add1 = "台北市大安區忠孝東路四段235號2樓";
-                ViewBag.add2 = "台北市大安區安和路二段217巷2弄3號2樓";
-            }
-            else if(SchoolID == 6)
-            {
-                ViewBag.name = "國立台灣藝術大學";
-                ViewBag.add1 = "新北市中和區立德街56號";
-                ViewBag.add2 = "新北市板橋區民權路3號";
-            }
-            return View(result.ToList());
-            
-        }
-
-        public ActionResult PartialList()
-        {
-            return View(db.Shop.ToList());
+            return PartialView(result.ToList());
         }
 
       
@@ -263,7 +343,13 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
         [DisplayName("學校編號")]
         public Nullable<int> SchoolID { get; set; }
 
+
+
         [DisplayName("學校名稱")]
         public string SchoolName { get; set; }
+
+        [DisplayName("分類名稱")]
+
+        public string FoodCategoryName { get; set; }
     }
 }

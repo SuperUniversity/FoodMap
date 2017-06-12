@@ -13,7 +13,7 @@
             height:150px;
         }
         #adarea{
-            background-color:antiquewhite;
+            background-color:wheat;
             text-align:center;
         }
         #cf{
@@ -25,6 +25,12 @@
 
 <div id="adarea">
     <img id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_1.jpg" />
+</div>
+<div class="container">
+    <ul class="breadcrumb">
+        <li>@Html.ActionLink("首頁","Index","Customer",new { area="FoodMapArea"},null)</li>
+        <li>地圖找美食</li>
+    </ul>
 </div>
 <div class="container-fluid" id="cf" style="padding:10px">
     <div class="row">
@@ -86,7 +92,8 @@
                     {
                         <div class="col-md-4" style="margin-top:10px;">
                             <img src="@Url.Action("GetImage",new { id=shop.ShopID})" style="width:250px;height:250px;margin-top:10px" />
-                            <p style="font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.ShopName)</p>
+                            <p style="font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold;color:red">@Html.DisplayTextFor(p => shop.ShopName)</p>
+                            <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold;color:green">@Html.DisplayTextFor(p => shop.FoodCategoryName)</p>
                             <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Address)</p>
                             <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Phone)</p>
                             <p >@Html.HiddenFor(p => shop.SchoolName)</p>
@@ -105,7 +112,8 @@
                    {
                     <div class="col-md-4" style="margin-top:10px;">
                         <img src="@Url.Action("GetImage",new { id=shop.ShopID})" style="width:250px;height:250px;margin-top:10px" />
-                        <p style="font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.ShopName)</p>
+                        <p style="font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold;color:red">@Html.DisplayTextFor(p => shop.ShopName)</p>
+                        <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold;color:green">@Html.DisplayTextFor(p => shop.FoodCategoryName)</p>
                         <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Address)</p>
                         <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Phone)</p>
                         <p>@Html.HiddenFor(p => shop.SchoolName)</p>
@@ -163,12 +171,17 @@
             var address2 = '@ViewBag.add2';
         }
 
+        if ('@ViewBag.add3' != "") {
+            var address3 = '@ViewBag.add3';
+        }
+
 	  map = new GMap2(document.getElementById("map"));         // 建立地圖物件
 	  map.addControl(new GLargeMapControl());                  // 加入地圖縮放工具
 	  map.addControl(new GMapTypeControl());                   // 加入地圖切換的工具
 	  geocoder = new GClientGeocoder();                        // 建立新的地理編碼物件
 	  geocoder.getLocations(address1, addToMap);
 	  geocoder.getLocations(address2, addToMap);
+	  geocoder.getLocations(address3, addToMap);
 	  geocoder.getLocations(address, addToMap);                //  檢索位置資訊，將它傳遞給 addToMap()
 
 

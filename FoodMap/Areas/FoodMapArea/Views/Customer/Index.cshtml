@@ -167,23 +167,25 @@
 
             <div class="col-md-9">
                 <label class="right-label"><span class="glyphicon glyphicon-chevron-right" style="color:darkgreen"></span><span style="color:orangered">推薦</span>店家</label>
-                <div class="col-md-12" id="right-div">
-                    <div class="col-md-5">
-                        <img src="@Url.Action("GetImage",new { id=ViewBag.num})" style="width:300px;height:300px" />
+                <div>
+                    <div class="col-md-12" id="right-div">
+                        <div class="col-md-5">
+                            <img src="@Url.Action("GetImage",new { id=ViewBag.num})" style="width:300px;height:300px" />
+                        </div>
+                        <div class="col-md-7">
+                            <p style="font-size:30px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => p.ShopName)</p>
+                            <br />
+                            <p style="font-size:16px;font-family:'Microsoft JhengHei'">@Html.DisplayTextFor(p => p.Description)</p>
+                            <br />
+                            @Html.LabelFor(p => p.Address, new { @class = "words" }) : @Html.DisplayTextFor(p => p.Address)　　@Html.LabelFor(p => p.Phone, new { @class = "words" }) : @Html.DisplayTextFor(p => p.Phone)
+                            <br />
+                            @Html.LabelFor(p => p.BusinessTime, new { @class = "words" }) : @Html.DisplayTextFor(p => p.BusinessTime)
+                            <br />
+                            <br />
+                            <div style="float:right">@Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary", style = "font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold" })</div>
+                        </div>
+
                     </div>
-                    <div class="col-md-7">
-                        <p style="font-size:30px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p=>p.ShopName)</p>
-                        <br />
-                        <p style="font-size:16px;font-family:'Microsoft JhengHei'">@Html.DisplayTextFor(p=>p.Description)</p>
-                        <br />
-                        @Html.LabelFor(p=>p.Address,new {@class="words" }) : @Html.DisplayTextFor(p=>p.Address)　　@Html.LabelFor(p=>p.Phone, new { @class = "words" }) : @Html.DisplayTextFor(p=>p.Phone)
-                        <br />
-                        @Html.LabelFor(p=>p.BusinessTime, new { @class = "words" }) : @Html.DisplayTextFor(p=>p.BusinessTime)
-                        <br />
-                        <br />
-                        <div style="float:right">@Html.ActionLink("點我看店家詳細", "", "", new { }, new { @class = "btn btn-primary", style= "font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold" })</div>
-                    </div>
-                   
                 </div>
                 <br />
                 <div class="col-md-12">
