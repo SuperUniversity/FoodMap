@@ -1,0 +1,126 @@
+﻿@*@model FoodMap.Areas.FoodMapArea.Models.Shop*@
+@model IEnumerable<FoodMap.Areas.FoodMapArea.Models.Shop>
+@{
+    ViewBag.Title = "網站首頁(使用者)";
+}
+
+@section styles{
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        #ad{
+            width:70%;
+            height:150px;
+        }
+        #adarea{
+            background-color:antiquewhite;
+            text-align:center;
+        }
+        #schooltext{
+            font-size:30px;
+            font-family:'Microsoft JhengHei';
+            font-weight:bold;
+        }
+        #schoolimg{
+            width:50px;
+            height:50px;
+            margin-right:15px;
+        }
+        #left-div{
+            border:1px solid black;
+            background-color:lightgray;
+            padding:5px;
+        }
+        #firstContainer{
+            margin-top:30px;
+        }
+        .schoolarea{
+            font-size:20px;
+            font-family:'Microsoft JhengHei';
+            font-weight:bold;
+        }
+        .schoolname{
+            font-size:15px;
+            font-family:'Microsoft JhengHei';
+            font-weight:bold;
+            margin:3px;
+        }
+        .more{
+            font-size:15px;
+            font-family:'Microsoft JhengHei';
+            font-weight:bold;
+            margin:3px;
+            float:right;
+        }
+    </style>
+    
+    }
+<div id="adarea" style="background-color:wheat">
+    <img id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_1.jpg"  />
+</div>
+<div class="container">
+    <ul class="breadcrumb">
+        <li>@Html.ActionLink("首頁","Index","Customer",new { area="FoodMapArea" },null)</li>
+        <li class="active">店家列表</li>
+        <li style="float:right">@Html.ActionLink("登入", "", "", new { area = "FoodMapArea" }, null)</li>
+        <li style="float:right">@Html.ActionLink("管理頁面", "", "", new { area = "FoodMapArea" }, null)</li>
+        <li style="float:right">@Html.ActionLink("店家介紹", "Index", "Shop", new { area = "FoodMapArea" }, null)</li>
+        <li style="float:right">@Html.ActionLink("地圖美食", "Map", "Customer", new { area = "FoodMapArea" }, null)</li>
+    </ul>
+</div>
+<div class="container" id="firstContainer">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-9">
+                <div class="col-md-12">
+                    <div class="container">
+                        <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">餐廳</span>資料瀏覽</h2>
+                        <hr />
+                        @Html.ActionLink("新增餐廳資料", "Create", "User", new { @class = "btn btn-primary" })
+                        <table class="table table-bordered table-hover table-striped" id="productTable">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(p => p.ShopID)</th>
+                                    <th>@Html.DisplayNameFor(p => p.ShopName)</th>
+                                    <th>@Html.DisplayNameFor(p => p.Address)</th>
+                                    <th>@Html.DisplayNameFor(p => p.Phone)</th>
+                                    <th>@Html.DisplayNameFor(p => p.Image1)</th>
+                                    <th>查看</th>
+                                    <th>修改/刪除　　　　　</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var shop in Model)
+            {
+                                    <tr data-shopid="@shop.ShopID">
+                                        <td>@Html.DisplayFor(p => shop.ShopID)</td>
+                                        <td>@Html.DisplayFor(p => shop.ShopName)</td>
+                                        <td>@Html.DisplayFor(p => shop.Address)</td>
+                                        <td>@Html.DisplayFor(p => shop.Phone)</td>
+                                        <td><img src="@Url.Action("GetImage",new { id=shop.ShopID})" class="img-thumbnail" style="width:90px;height:90px" /></td>
+                                        <td>@Html.ActionLink("查看", "Detail", "User", new { id = shop.ShopID, area = "FoodMapArea" }, new { @class = "btn btn-primary" })</td>
+                                        <td>@Html.ActionLink("修改", "Update", "User", new { id = shop.ShopID }, new { @class = "btn btn-primary" })@Html.ActionLink("刪除", "Delete", "User", new { id = shop.ShopID }, new { @class = "btn btn-primary" })</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@section scripts{
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    }

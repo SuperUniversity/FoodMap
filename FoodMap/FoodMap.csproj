@@ -166,6 +166,14 @@
     <Content Include="Areas\FoodMapArea\Views\Customer\PartialDrop.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\Customer\PartialList.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\Admin\PartialDrop2.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\Shop\Details.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\Shop\GetFoodCategoryName.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\Shop\Index.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\User\Create.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\User\Detail.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\User\Index.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\User\PartialDrop3.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\User\Update.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -181,6 +189,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\FoodMapArea\Controllers\AdminController.cs" />
     <Compile Include="Areas\FoodMapArea\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\FoodMapArea\Controllers\ShopController.cs" />
+    <Compile Include="Areas\FoodMapArea\Controllers\UserController.cs" />
     <Compile Include="Areas\FoodMapArea\FoodMapAreaAreaRegistration.cs" />
     <Compile Include="Areas\FoodMapArea\Models\City.cs">
       <DependentUpon>FoodMapModel.tt</DependentUpon>

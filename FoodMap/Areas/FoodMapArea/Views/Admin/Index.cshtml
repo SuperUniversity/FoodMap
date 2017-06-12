@@ -10,7 +10,7 @@
             height:150px;
         }
         #adarea{
-            background-color:antiquewhite;
+            background-color:wheat;
             text-align:center;
         }
     </style>
@@ -23,6 +23,10 @@
     <ul class="breadcrumb">
         <li>@Html.ActionLink("首頁", "Index", "Customer", new { area = "FoodMapArea" }, null)</li>
         <li>餐廳資料瀏覽(Admin)</li>
+        <li style="float:right">@Html.ActionLink("登入", "", "", new { area = "FoodMapArea" }, null)</li>
+        <li style="float:right">@Html.ActionLink("管理頁面", "", "", new { area = "FoodMapArea" }, null)</li>
+        <li style="float:right">@Html.ActionLink("店家介紹", "Index", "Shop", new { area = "FoodMapArea" }, null)</li>
+        <li style="float:right">@Html.ActionLink("地圖美食", "Map", "Customer", new { area = "FoodMapArea" }, null)</li>
     </ul>
 </div>
 <div class="container">
