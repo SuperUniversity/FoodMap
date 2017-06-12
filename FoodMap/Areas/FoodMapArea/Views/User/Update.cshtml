@@ -1,51 +1,67 @@
 ﻿@model FoodMap.Areas.FoodMapArea.Models.Shop
 @{
-    ViewBag.Title = "餐廳資料新增";
+    ViewBag.Title = "餐廳資料修改(使用者)";
 }
 @section styles{
     <style>
-        #nopic {
-            color: red;
-            font-size: 24px;
+#adarea{
+            background-color:wheat;
+            text-align:center;
         }
     </style>
+     
+    }
 
-}
 
+<div id="adarea">
+    <img id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_0.jpg" />
+</div>
 <div class="container">
-    <h2>餐廳資料新增</h2>
+    <ul class="breadcrumb">
+        <li><a href="">首頁</a></li>
+        <li>@Html.ActionLink("店家列表", "Index", "User", new { area = "FoodMapArea" })</li>
+        <li>餐廳資料修改</li>
+    </ul>
+</div>
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">餐廳</span>資料修改</h2>
     <hr />
 
-    @using (Html.BeginForm("Create", "Admin", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Update", "User", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
     {
-        @*<div class="form-group">
-                <label class="col-sm-2 control-label">分類名稱</label>
-                <div class="col-sm-10">
-                    @{
-                        var categories = new SelectList(ViewBag.datas, "FoodCategoryID", "FoodCategoryName");
-                    }
-                    @Html.DropDownListFor(p => p.FoodCategoryID, categories, "請選擇", new { @class = "form-control" })
-                </div>
-            </div>*@
+        @Html.HiddenFor(p => p.ShopID)
+
         <div class="form-group">
             @Html.LabelFor(p => p.ShopName, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
                 @Html.EditorFor(p => p.ShopName, new { htmlAttributes = new { @class = "form-control", placeholder = "餐廳名稱" } })
             </div>
         </div>
-        @*<div class="form-group">
-                <label class="col-sm-2 control-label">縣市/鄰近學校名稱</label>
-                <div class="col-sm-10">
-                    @{
-                        var cities = new SelectList(ViewBag.cities, "CityID", "CityName");
-                        var schools = new SelectList(ViewBag.schools, "SchoolID", "SchoolName");
-                    }
-
-                    @Html.DropDownListFor(p => p.CityID, cities, "請選擇縣市", new { @class = "form-control" })
-                    @Html.DropDownListFor(p => p.SchoolID, schools, "請選擇學校", new { @class = "form-control" })
-                </div>
-            </div>*@
-        @Html.Action("PartialDrop2")
+        <div class="form-group">
+            <label class="col-sm-2 control-label">縣市名稱</label>
+            <div class="col-sm-10">
+                @{
+                    var cities = new SelectList(ViewBag.cities, "CityID", "CityName");
+                    var schools = new SelectList(ViewBag.schools, "SchoolID", "SchoolName");
+                }
+                @Html.DropDownListFor(p => p.CityID, cities, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">學校名稱</label>
+            <div class="col-sm-10">
+                @Html.DropDownListFor(p => p.SchoolID, schools, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">分類名稱</label>
+            <div class="col-sm-10">
+                @{
+                    var categories = new SelectList(ViewBag.datas, "FoodCategoryID", "FoodCategoryName");
+                }
+                @Html.DropDownListFor(p => p.FoodCategoryID, categories, "請選擇", new { @class = "form-control" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(p => p.Address, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
@@ -80,14 +96,12 @@
             @Html.LabelFor(p => p.Image1, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
                 @Html.EditorFor(p => p.Image1, new { htmlAttributes = new { @class = "form-control", placeholder = "Product Image", type = "file" } })
-                <label id="nopic">@ViewBag.Message</label>
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(p => p.Image2, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
                 @Html.EditorFor(p => p.Image2, new { htmlAttributes = new { @class = "form-control", placeholder = "Product Image", type = "file" } })
-                <label></label>
             </div>
         </div>
         <div class="form-group">
@@ -105,8 +119,17 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-primary">送出</button>
+                <div>@ViewBag.Message</div>
             </div>
         </div>
-    }
-
+                    }
 </div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+

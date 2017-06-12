@@ -83,6 +83,6 @@ C:\Users\III\Desktop\新增資料夾 (5)\FoodMap\FoodMap\bin\zh-Hant\System.Web.
 C:\Users\III\Desktop\新增資料夾 (5)\FoodMap\FoodMap\bin\zh-Hant\System.Web.Webpages.Razor.resources.dll
 C:\Users\III\Desktop\新增資料夾 (5)\FoodMap\FoodMap\bin\zh-Hant\System.Web.Helpers.resources.dll
 C:\Users\III\Desktop\新增資料夾 (5)\FoodMap\FoodMap\bin\zh-Hant\System.Web.Mvc.resources.dll
-C:\Users\III\Desktop\新增資料夾 (5)\FoodMap\FoodMap\obj\Debug\FoodMap.csprojResolveAssemblyReference.cache
 C:\Users\III\Desktop\新增資料夾 (5)\FoodMap\FoodMap\obj\Debug\FoodMap.dll
 C:\Users\III\Desktop\新增資料夾 (5)\FoodMap\FoodMap\obj\Debug\FoodMap.pdb
+C:\Users\III\Desktop\新增資料夾 (5)\FoodMap\FoodMap\obj\Debug\FoodMap.csprojResolveAssemblyReference.cache

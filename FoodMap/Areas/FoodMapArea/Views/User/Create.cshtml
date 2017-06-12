@@ -1,22 +1,40 @@
 ﻿@model FoodMap.Areas.FoodMapArea.Models.Shop
 @{
-    ViewBag.Title = "餐廳資料新增";
+    ViewBag.Title = "餐廳資料新增(使用者)";
 }
+
 @section styles{
     <style>
         #nopic {
             color: red;
             font-size: 24px;
         }
+          #ad{
+            width:70%;
+            height:150px;
+        }
+          #adarea{
+            background-color:wheat;
+            text-align:center;
+        }
     </style>
 
 }
-
+<div id="adarea">
+    <img  id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_3.jpg" />
+</div>
 <div class="container">
-    <h2>餐廳資料新增</h2>
+    <ul class="breadcrumb">
+        <li><a href="">首頁</a></li>
+        <li>@Html.ActionLink("店家列表", "Index", "User", new { area = "FoodMapArea" })</li>
+        <li>餐廳資料新增</li>
+    </ul>
+</div>
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">餐廳</span>資料新增</h2>
     <hr />
 
-    @using (Html.BeginForm("Create", "Admin", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Create", "User", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
     {
         @*<div class="form-group">
                 <label class="col-sm-2 control-label">分類名稱</label>
@@ -110,3 +128,9 @@
     }
 
 </div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

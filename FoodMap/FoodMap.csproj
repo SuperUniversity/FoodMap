@@ -111,7 +111,10 @@
       <LastGenOutput>FoodMapModel.cs</LastGenOutput>
     </Content>
     <Content Include="Areas\FoodMapArea\ShopImages\nopic.jpg" />
+    <Content Include="Areas\FoodMapArea\WebImages\appIcon2.png" />
+    <Content Include="Areas\FoodMapArea\WebImages\delicacy_banner_0.jpg" />
     <Content Include="Areas\FoodMapArea\WebImages\delicacy_banner_1.jpg" />
+    <Content Include="Areas\FoodMapArea\WebImages\delicacy_banner_3.jpg" />
     <Content Include="Areas\FoodMapArea\WebImages\school.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -123,7 +126,7 @@
     <Content Include="Areas\FoodMapArea\Views\Admin\Create.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\Admin\Detail.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\Admin\Update.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\User\Index.cshtml" />
     <EntityDeploy Include="Areas\FoodMapArea\Models\FoodMapModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FoodMapModel.Designer.cs</LastGenOutput>
@@ -131,6 +134,14 @@
     <Content Include="Areas\FoodMapArea\Models\FoodMapModel.edmx.diagram">
       <DependentUpon>FoodMapModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\FoodMapArea\Views\Shop\Details.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\Shop\Index.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\Shop\GetFoodCategoryName.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\User\Create.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\User\Update.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\User\Detail.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\Admin\PartialDrop2.cshtml" />
+    <Content Include="Areas\FoodMapArea\Views\User\PartialDrop2.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -140,7 +151,8 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\FoodMapArea\Controllers\AdminController.cs" />
-    <Compile Include="Areas\FoodMapArea\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\FoodMapArea\Controllers\UserController.cs" />
+    <Compile Include="Areas\FoodMapArea\Controllers\ShopController.cs" />
     <Compile Include="Areas\FoodMapArea\FoodMapAreaAreaRegistration.cs" />
     <Compile Include="Areas\FoodMapArea\Models\City.cs">
       <DependentUpon>FoodMapModel.tt</DependentUpon>

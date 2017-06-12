@@ -10,7 +10,7 @@ using System.Data;
 
 namespace FoodMap.Areas.FoodMapArea.Controllers
 {
-    public class AdminController : Controller
+    public class UserController : Controller
     {
 
         private superuniversityEntities db = new superuniversityEntities();
@@ -154,7 +154,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
                 db.Shop.Add(shop);
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "Admin", new { Area = "FoodMapArea" });
+                return RedirectToAction("Index", "User", new { Area = "FoodMapArea" });
             }
             ViewBag.Message = "請至少選擇一張圖片";
             ViewBag.datas = db.FoodCategory.ToList();
@@ -229,7 +229,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
                 db.Entry(shop).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "Admin", new { Area = "FoodMapArea" });
+                return RedirectToAction("Index", "User", new { Area = "FoodMapArea" });
             }
             ViewBag.Message = "請至少選擇一張圖片";
             ViewBag.datas = db.FoodCategory.ToList();
@@ -245,9 +245,9 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
             {
                 db.Shop.Remove(db.Shop.Find(id));
                 db.SaveChanges();
-                return RedirectToAction("Index", "Admin", new { Area = "FoodMapArea" });
+                return RedirectToAction("Index", "User", new { Area = "FoodMapArea" });
             }
-            return RedirectToAction("Index", "Admin", new { Area = "FoodMapArea" });
+            return RedirectToAction("Index", "User", new { Area = "FoodMapArea" });
         }
     }
 }

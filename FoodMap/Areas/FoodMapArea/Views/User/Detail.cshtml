@@ -1,12 +1,31 @@
 ﻿@model FoodMap.Areas.FoodMapArea.Models.Shop
 @{
-    ViewBag.Title = "餐廳詳細資料";
+    ViewBag.Title = "餐廳詳細資料(使用者)";
 }
 
+@section styles{
+    <style>
+        #adarea{
+            background-color:wheat;
+            text-align:center;
+        }
+    </style>
+    }
+
+<div id="adarea">
+    <img src="~/Areas/FoodMapArea/WebImages/delicacy_banner_1.jpg" />
+</div>
 <div class="container">
-    <h2>餐廳詳細資料</h2>
+    <ul class="breadcrumb">
+        <li><a href="">首頁</a></li>
+        <li>@Html.ActionLink("店家列表", "Index", "User", new { area = "FoodMapArea" })</li>
+        <li>餐廳詳細資料</li>
+    </ul>
+</div>
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">餐廳</span>詳細資料</h2>
     <hr />
-    @using (Html.BeginForm("Create", "Admin", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Create", "User", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
     {
         <div class="form-group">
             @Html.LabelFor(p => p.ShopID, new { @class = "col-sm-2 control-label" })
@@ -110,7 +129,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            @Html.ActionLink("返回瀏覽", "Index", "Admin", new { area = "FoodMapArea", @class = "btn btn-primary" })
+                            @Html.ActionLink("返回瀏覽", "Index", "User", new { area = "FoodMapArea", @class = "btn btn-primary" })
                         </div>
                     </div>
                     <br />
