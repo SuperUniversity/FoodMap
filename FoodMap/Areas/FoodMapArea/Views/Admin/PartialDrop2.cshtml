@@ -15,7 +15,7 @@
 
         function GetSchool(CityID) {
             $.ajax({
-                url: '@Url.Action("Schools", "Customer")',
+                url: '@Url.Action("Schools", "Admin")',
                 data: { CityID: CityID },
                 type: 'post',
                 cache: false,

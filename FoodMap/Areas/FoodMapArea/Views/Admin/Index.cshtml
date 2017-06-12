@@ -3,9 +3,30 @@
 @{
     ViewBag.Title = "餐廳資料瀏覽";
 }
+@section styles{
+    <style>
+        #ad{
+            width:70%;
+            height:150px;
+        }
+        #adarea{
+            background-color:antiquewhite;
+            text-align:center;
+        }
+    </style>
+    }
 
+<div id="adarea">
+    <img id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_1.jpg" />
+</div>
 <div class="container">
-    <h2>餐廳資料瀏覽</h2>
+    <ul class="breadcrumb">
+        <li>@Html.ActionLink("首頁", "Index", "Customer", new { area = "FoodMapArea" }, null)</li>
+        <li>餐廳資料瀏覽(Admin)</li>
+    </ul>
+</div>
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;"><span style="color:orangered">餐廳</span>資料瀏覽(Admin)</h2>
     <hr />
     @Html.ActionLink("新增餐廳資料", "Create", "Admin",null, new { @class = "btn btn-primary" })
     <br />
@@ -30,7 +51,7 @@
                     <td>@Html.DisplayFor(p => shop.ShopName)</td>
                     <td>@Html.DisplayFor(p => shop.Address)</td>
                     <td>@Html.DisplayFor(p => shop.Phone)</td>
-                    <td><img src="@Url.Action("GetImage",new { id=shop.ShopID})" class="img-thumbnail" width="90px" /></td>
+                    <td><img src="@Url.Action("GetImage",new { id=shop.ShopID})" class="img-thumbnail" style="width:90px;height:90px" /></td>
                     <td>@Html.ActionLink("查看", "Detail", "Admin", new { id = shop.ShopID, area = "FoodMapArea" }, new { @class = "btn btn-primary" })</td>
                     <td>@Html.ActionLink("修改", "Update", "Admin", new { id = shop.ShopID }, new { @class = "btn btn-primary" })@Html.ActionLink("刪除", "Delete", "Admin", new { id = shop.ShopID }, new { @class = "btn btn-primary" })</td>
                 </tr>
@@ -40,3 +61,9 @@
 
     </table>
 </div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

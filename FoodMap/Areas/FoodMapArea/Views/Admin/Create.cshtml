@@ -8,12 +8,31 @@
             color: red;
             font-size: 24px;
         }
+        #ad {
+            width: 70%;
+            height: 150px;
+        }
+
+        #adarea {
+            background-color: antiquewhite;
+            text-align: center;
+        }
     </style>
 
 }
 
+<div id="adarea">
+    <img id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_1.jpg" />
+</div>
 <div class="container">
-    <h2>餐廳資料新增</h2>
+    <ul class="breadcrumb">
+        <li>@Html.ActionLink("首頁", "Index", "Customer", new { area = "FoodMapArea" }, null)</li>
+        <li>@Html.ActionLink("餐廳資料瀏覽(Admin)", "Index", "Admin", new { area = "FoodMapArea" }, null)</li>
+        <li>餐廳資料新增</li>
+    </ul>
+</div>
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;"><span style="color:orangered">餐廳</span>資料新增</h2>
     <hr />
 
     @using (Html.BeginForm("Create", "Admin", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
@@ -110,3 +129,11 @@
                     }
 
 </div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
