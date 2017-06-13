@@ -113,7 +113,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(Shop shop, HttpPostedFileBase Image1, HttpPostedFileBase Image2, HttpPostedFileBase Image3)
+        public ActionResult Create(Shop shop, Shop_ShopCustomer shop_customer, HttpPostedFileBase Image1, HttpPostedFileBase Image2, HttpPostedFileBase Image3)
         {
             if(Image1 != null)
             {
@@ -149,8 +149,9 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
                     shop.BytesImage3 = imgByte3;
                 }
 
+                shop_customer.CustomerID = Convert.ToInt32(Request.Cookies["CustomerID"].Value);
 
-
+                db.Shop_ShopCustomer.Add(shop_customer);
                 db.Shop.Add(shop);
                 db.SaveChanges();
 
