@@ -7,10 +7,12 @@
       <Diagram DiagramId="ad3a5b8e00e543ec9c03a63ec0300599" Name="Diagram1">
         <EntityTypeShape EntityType="superuniversityModel.City" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="superuniversityModel.FoodCategory" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="superuniversityModel.Order" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="superuniversityModel.Order" Width="1.5" PointX="1.125" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="superuniversityModel.School" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="superuniversityModel.Shop" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="superuniversityModel.FK_School_City" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="superuniversityModel.ShopCustomer" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="superuniversityModel.Shop_ShopCustomer" Width="1.5" PointX="9.5" PointY="2.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

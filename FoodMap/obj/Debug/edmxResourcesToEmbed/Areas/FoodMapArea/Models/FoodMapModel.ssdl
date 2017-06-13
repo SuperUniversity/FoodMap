@@ -37,14 +37,14 @@
       <PropertyRef Name="ShopID" />
     </Key>
     <Property Name="ShopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
     <Property Name="Phone" Type="nvarchar" MaxLength="50" />
     <Property Name="Image1" Type="nvarchar" MaxLength="50" />
     <Property Name="BytesImage1" Type="image" />
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="Cost" Type="nvarchar" MaxLength="50" />
     <Property Name="BusinessTime" Type="nvarchar" MaxLength="50" />
-    <Property Name="ShopName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ShopName" Type="nvarchar" MaxLength="50" />
     <Property Name="FoodCategoryID" Type="int" />
     <Property Name="Image2" Type="nvarchar" MaxLength="50" />
     <Property Name="BytesImage2" Type="image" />
@@ -53,6 +53,22 @@
     <Property Name="ShopLink" Type="nvarchar" MaxLength="50" />
     <Property Name="CityID" Type="int" />
     <Property Name="SchoolID" Type="int" />
+  </EntityType>
+  <EntityType Name="Shop_ShopCustomer">
+    <Key>
+      <PropertyRef Name="ShopID" />
+    </Key>
+    <Property Name="ShopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ShopCustomer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_School_City">
     <End Role="City" Type="Self.City" Multiplicity="0..1" />
@@ -72,6 +88,8 @@
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="School" EntityType="Self.School" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shop_ShopCustomer" EntityType="Self.Shop_ShopCustomer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShopCustomer" EntityType="Self.ShopCustomer" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_School_City" Association="Self.FK_School_City">
       <End Role="City" EntitySet="City" />
       <End Role="School" EntitySet="School" />

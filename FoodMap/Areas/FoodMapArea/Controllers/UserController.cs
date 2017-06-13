@@ -7,6 +7,8 @@ using FoodMap.Areas.FoodMapArea.Models;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace FoodMap.Areas.FoodMapArea.Controllers
 {
@@ -15,9 +17,35 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
 
         private superuniversityEntities db = new superuniversityEntities();
         // GET: FoodMapArea/Admin
-        public ActionResult Index()
+        public ActionResult Index(int id=0)
         {
-            return View(db.Shop.ToList());
+            var result = from p in db.ShopCustomer
+                         join s in db.Shop_ShopCustomer on p.CustomerID equals s.CustomerID
+                         join c in db.Shop on s.ShopID equals c.ShopID
+                         where p.CustomerID == id
+                         select new UserTemp
+                         {
+                            ShopID = c.ShopID,
+                            Address = c.Address,
+                            BusinessTime = c.BusinessTime,
+                            BytesImage1 = c.BytesImage1,
+                            BytesImage2 = c.BytesImage2,
+                            BytesImage3 = c.BytesImage3,
+                            Phone = c.Phone,
+                            Image1 = c.Image1,
+                            Image2 = c.Image2,
+                            Image3 = c.Image3,
+                            Description = c.Description,
+                            Cost = c.Cost,
+                            ShopName = c.ShopName,
+                            FoodCategoryID = c.FoodCategoryID,
+                            ShopLink = c.ShopLink,
+                            CityID = c.CityID,
+                            SchoolID = c.SchoolID,
+                            CustomerID = p.CustomerID
+                         };
+                         
+            return View(result.ToList());
         }
 
         public ActionResult GetImage(int id = 1)
@@ -113,7 +141,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(Shop shop, HttpPostedFileBase Image1, HttpPostedFileBase Image2, HttpPostedFileBase Image3)
+        public ActionResult Create(Shop shop,Shop_ShopCustomer shop_shopcustomer, HttpPostedFileBase Image1, HttpPostedFileBase Image2, HttpPostedFileBase Image3)
         {
             if (Image1 != null)
             {
@@ -149,12 +177,12 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
                     shop.BytesImage3 = imgByte3;
                 }
 
-
-
+                shop_shopcustomer.CustomerID = Convert.ToInt32(Request.Cookies["CustomerID"].Value);
+                db.Shop_ShopCustomer.Add(shop_shopcustomer);
                 db.Shop.Add(shop);
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "User", new { Area = "FoodMapArea" });
+                return RedirectToAction("Index", "User", new { id = Request.Cookies["CustomerID"].Value, Area = "FoodMapArea" });
             }
             ViewBag.Message = "請至少選擇一張圖片";
             ViewBag.datas = db.FoodCategory.ToList();
@@ -229,7 +257,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
                 db.Entry(shop).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "User", new { Area = "FoodMapArea" });
+                return RedirectToAction("Index", "User", new { id = Request.Cookies["CustomerID"].Value, Area = "FoodMapArea" });
             }
             ViewBag.Message = "請至少選擇一張圖片";
             ViewBag.datas = db.FoodCategory.ToList();
@@ -245,9 +273,48 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
             {
                 db.Shop.Remove(db.Shop.Find(id));
                 db.SaveChanges();
-                return RedirectToAction("Index", "User", new { Area = "FoodMapArea" });
+                return RedirectToAction("Index", "User", new { id = Request.Cookies["CustomerID"].Value, Area = "FoodMapArea" });
             }
-            return RedirectToAction("Index", "User", new { Area = "FoodMapArea" });
+            return RedirectToAction("Index", "User", new { id = Request.Cookies["CustomerID"].Value, Area = "FoodMapArea" });
         }
+    }
+
+    public class UserTemp
+    {
+        [DisplayName("餐廳編號")]
+        public int ShopID { get; set; }
+        [DisplayName("地址")]
+        public string Address { get; set; }
+        [DisplayName("電話")]
+        public string Phone { get; set; }
+        [DisplayName("圖片1")]
+        public string Image1 { get; set; }
+        public byte[] BytesImage1 { get; set; }
+        [DisplayName("介紹")]
+        [DataType(DataType.MultilineText)]
+        public string Description { get; set; }
+        [DisplayName("平均消費")]
+        public string Cost { get; set; }
+        [DisplayName("營業時間")]
+        public string BusinessTime { get; set; }
+        [DisplayName("餐廳名稱")]
+        public string ShopName { get; set; }
+        [DisplayName("分類編號")]
+        public Nullable<int> FoodCategoryID { get; set; }
+        [DisplayName("圖片2")]
+        public string Image2 { get; set; }
+        public byte[] BytesImage2 { get; set; }
+        [DisplayName("圖片3")]
+        public string Image3 { get; set; }
+        public byte[] BytesImage3 { get; set; }
+        [DisplayName("粉絲專頁")]
+        public string ShopLink { get; set; }
+        [DisplayName("縣市編號")]
+        public Nullable<int> CityID { get; set; }
+        [DisplayName("學校編號")]
+        public Nullable<int> SchoolID { get; set; }
+
+        [DisplayName("會員編號")]
+        public int CustomerID { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="superuniversityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="superuniversityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityID" />
@@ -42,14 +42,14 @@
             <PropertyRef Name="ShopID" />
           </Key>
           <Property Name="ShopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Image1" Type="nvarchar" MaxLength="50" />
           <Property Name="BytesImage1" Type="image" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Cost" Type="nvarchar" MaxLength="50" />
           <Property Name="BusinessTime" Type="nvarchar" MaxLength="50" />
-          <Property Name="ShopName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShopName" Type="nvarchar" MaxLength="50" />
           <Property Name="FoodCategoryID" Type="int" />
           <Property Name="Image2" Type="nvarchar" MaxLength="50" />
           <Property Name="BytesImage2" Type="image" />
@@ -58,6 +58,22 @@
           <Property Name="ShopLink" Type="nvarchar" MaxLength="50" />
           <Property Name="CityID" Type="int" />
           <Property Name="SchoolID" Type="int" />
+        </EntityType>
+        <EntityType Name="Shop_ShopCustomer">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShopCustomer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_School_City">
           <End Role="City" Type="Self.City" Multiplicity="0..1" />
@@ -77,13 +93,14 @@
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="School" EntityType="Self.School" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shop_ShopCustomer" EntityType="Self.Shop_ShopCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShopCustomer" EntityType="Self.ShopCustomer" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_School_City" Association="Self.FK_School_City">
             <End Role="City" EntitySet="City" />
             <End Role="School" EntitySet="School" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="superuniversityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -126,14 +143,14 @@
             <PropertyRef Name="ShopID" />
           </Key>
           <Property Name="ShopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Image1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BytesImage1" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Cost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BusinessTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FoodCategoryID" Type="Int32" />
           <Property Name="Image2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BytesImage2" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -165,7 +182,25 @@
             <End Role="City" EntitySet="City" />
             <End Role="School" EntitySet="School" />
           </AssociationSet>
+          <EntitySet Name="ShopCustomer" EntityType="superuniversityModel.ShopCustomer" />
+          <EntitySet Name="Shop_ShopCustomer" EntityType="superuniversityModel.Shop_ShopCustomer" />
         </EntityContainer>
+        <EntityType Name="ShopCustomer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="EmailAddress" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Shop_ShopCustomer">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -228,6 +263,24 @@
                 <ScalarProperty Name="ShopLink" ColumnName="ShopLink" />
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
                 <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShopCustomer">
+            <EntityTypeMapping TypeName="superuniversityModel.ShopCustomer">
+              <MappingFragment StoreEntitySet="ShopCustomer">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shop_ShopCustomer">
+            <EntityTypeMapping TypeName="superuniversityModel.Shop_ShopCustomer">
+              <MappingFragment StoreEntitySet="Shop_ShopCustomer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -21,8 +21,29 @@
         <li>@Html.ActionLink("首頁", "Index", "Customer", new { area = "FoodMapArea" }, null)</li>
         <li>@Html.ActionLink("店家列表", "Index", "User", new { area = "FoodMapArea" })</li>
         <li>餐廳資料修改</li>
-        <li style="float:right">@Html.ActionLink("登入", "", "", new { area = "FoodMapArea" }, null)</li>
-        <li style="float:right">@Html.ActionLink("管理頁面", "", "", new { area = "FoodMapArea" }, null)</li>
+        @if (Request.Cookies["UserName"] == null)
+        {
+            <li style="float:right">@Html.ActionLink("登入", "Login", "Account", new { area = "FoodMapArea" }, null)</li>
+        }
+        else
+        {
+            <li style="float:right">@Html.ActionLink(Request.Cookies["UserName"].Value + " 登出", "Logout", "Account", new { area = "FoodMapArea" }, null)</li>
+        }        
+        @if (Request.Cookies["UserName"] == null)
+        {
+            <li style="float:right">@Html.ActionLink("管理介面", "Login", "Account", new { area = "FoodMapArea" }, null)</li>
+        }
+        else
+        {
+            if (Request.Cookies["UserName"].Value == "Admin")
+            {
+                <li style="float:right">@Html.ActionLink("管理介面", "Index", "Admin", new { area = "FoodMapArea" }, null)</li>
+            }
+            else
+            {
+                <li style="float:right">@Html.ActionLink("管理介面", "Index", "User", new { area = "FoodMapArea", id = Request.Cookies["CustomerID"].Value }, null)</li>
+            }
+        }
         <li style="float:right">@Html.ActionLink("店家介紹", "Index", "Shop", new { area = "FoodMapArea" }, null)</li>
         <li style="float:right">@Html.ActionLink("地圖美食", "Map", "Customer", new { area = "FoodMapArea" }, null)</li>
     </ul>
