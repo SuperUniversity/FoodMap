@@ -8,6 +8,11 @@
             background-color:wheat;
             text-align:center;
         }
+    .barfont{
+            font-size:18px;
+            font-family:'Microsoft JhengHei';
+            font-weight:bold;
+        }
     </style>
      
     }
@@ -17,7 +22,7 @@
     <img id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_0.jpg" />
 </div>
 <div class="container">
-    <ul class="breadcrumb">
+    <ul class="breadcrumb barfont">
         <li>@Html.ActionLink("首頁", "Index", "Customer", new { area = "FoodMapArea" }, null)</li>
         <li>@Html.ActionLink("店家列表", "Index", "User", new { area = "FoodMapArea" })</li>
         <li>餐廳資料修改</li>

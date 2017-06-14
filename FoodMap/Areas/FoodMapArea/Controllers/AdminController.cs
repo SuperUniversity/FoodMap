@@ -7,6 +7,8 @@ using FoodMap.Areas.FoodMapArea.Models;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
+using PagedList;
+using PagedList.Mvc;
 
 namespace FoodMap.Areas.FoodMapArea.Controllers
 {
@@ -15,9 +17,9 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
         
         private superuniversityEntities db = new superuniversityEntities();
         // GET: FoodMapArea/Admin
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Shop.ToList());
+            return View(db.Shop.ToList().ToPagedList(page ?? 1,10));
         }
 
         public ActionResult GetImage(int id = 1)

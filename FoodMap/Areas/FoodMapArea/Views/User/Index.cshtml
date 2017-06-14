@@ -1,11 +1,14 @@
 ﻿@*@model FoodMap.Areas.FoodMapArea.Models.Shop*@
-@model IEnumerable<FoodMap.Areas.FoodMapArea.Controllers.UserTemp>
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<FoodMap.Areas.FoodMapArea.Controllers.UserTemp>
 @{
     ViewBag.Title = "網站首頁(使用者)";
 }
 
 @section styles{
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="~/Content/PagedList.css" rel="stylesheet" />
     <style>
         #ad{
             width:70%;
@@ -51,6 +54,11 @@
             margin:3px;
             float:right;
         }
+        .barfont{
+            font-size:18px;
+            font-family:'Microsoft JhengHei';
+            font-weight:bold;
+        }
     </style>
     
     }
@@ -58,7 +66,7 @@
     <img id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_1.jpg"  />
 </div>
 <div class="container">
-    <ul class="breadcrumb">
+    <ul class="breadcrumb barfont">
         <li>@Html.ActionLink("首頁","Index","Customer",new { area="FoodMapArea" },null)</li>
         <li class="active">店家列表</li>
         @if (Request.Cookies["UserName"] == null)
@@ -88,29 +96,25 @@
         <li style="float:right">@Html.ActionLink("地圖美食", "Map", "Customer", new { area = "FoodMapArea" }, null)</li>
     </ul>
 </div>
-<div class="container" id="firstContainer">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-9">
-                <div class="col-md-12">
-                    <div class="container">
-                        <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">餐廳</span>資料瀏覽</h2>
+<div  @*id="firstContainer"*@ style="width:75%;margin-left:250px">
+
+                        <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;"><span style="color:orangered">餐廳</span>資料瀏覽(User)</h2>
                         <hr />
-                        @Html.ActionLink("新增餐廳資料", "Create", "User", new { @class = "btn btn-primary" })
+                        @Html.ActionLink("新增餐廳資料", "Create", "User", new { @class = "btn btn-primary barfont" })
                         <table class="table table-bordered table-hover table-striped" id="productTable">
-                            <thead>
+                            <thead class="barfont">
                                 <tr>
-                                    <th>@Html.DisplayNameFor(p => p.ShopID)</th>
-                                    <th>@Html.DisplayNameFor(p => p.ShopName)</th>
-                                    <th>@Html.DisplayNameFor(p => p.Address)</th>
-                                    <th>@Html.DisplayNameFor(p => p.Phone)</th>
-                                    <th>@Html.DisplayNameFor(p => p.Image1)</th>
+                                    <th>@Html.DisplayNameFor(p => p.First().ShopID)</th>
+                                    <th>@Html.DisplayNameFor(p => p.First().ShopName)</th>
+                                    <th>@Html.DisplayNameFor(p => p.First().Address)</th>
+                                    <th>@Html.DisplayNameFor(p => p.First().Phone)</th>
+                                    <th>@Html.DisplayNameFor(p => p.First().Image1)</th>
                                     <th>查看</th>
-                                    <th>修改/刪除　　　　　</th>
+                                    <th>編輯</th>
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody class="barfont">
                                 @foreach (var shop in Model)
             {
                                     <tr data-shopid="@shop.ShopID">
@@ -119,20 +123,21 @@
                                         <td>@Html.DisplayFor(p => shop.Address)</td>
                                         <td>@Html.DisplayFor(p => shop.Phone)</td>
                                         <td><img src="@Url.Action("GetImage",new { id=shop.ShopID})" class="img-thumbnail" style="width:90px;height:90px" /></td>
-                                        <td>@Html.ActionLink("查看", "Detail", "User", new { id = shop.ShopID, area = "FoodMapArea" }, new { @class = "btn btn-primary" })</td>
-                                        <td>@Html.ActionLink("修改", "Update", "User", new { id = shop.ShopID }, new { @class = "btn btn-primary" })@Html.ActionLink("刪除", "Delete", "User", new { id = shop.ShopID }, new { @class = "btn btn-primary" })</td>
+                                        <td>@Html.ActionLink("查看", "Detail", "User", new { id = shop.ShopID, area = "FoodMapArea" }, new { @class = "btn btn-primary barfont" })</td>
+                                        <td>@Html.ActionLink("修改", "Update", "User", new { id = shop.ShopID }, new { @class = "btn btn-primary barfont" })@Html.ActionLink("刪除", "Delete", "User", new { id = shop.ShopID }, new { @class = "btn btn-primary barfont" })</td>
                                     </tr>
                                 }
 
                             </tbody>
 
                         </table>
-                    </div>
+                        <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", "User", new { page = page, area = "FoodMapArea" }), PagedListRenderOptions.Classic)</div>
+                   
                     
-                </div>
-            </div>
-        </div>
-    </div>
+                
+           
+       
+    
 </div>
 <br />
 <br />

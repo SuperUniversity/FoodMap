@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Data;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using PagedList;
+using PagedList.Mvc;
 
 namespace FoodMap.Areas.FoodMapArea.Controllers
 {
@@ -17,7 +19,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
 
         private superuniversityEntities db = new superuniversityEntities();
         // GET: FoodMapArea/Admin
-        public ActionResult Index(int id=0)
+        public ActionResult Index(int? page,int id=0)
         {
             var result = from p in db.ShopCustomer
                          join s in db.Shop_ShopCustomer on p.CustomerID equals s.CustomerID
@@ -45,7 +47,7 @@ namespace FoodMap.Areas.FoodMapArea.Controllers
                             CustomerID = p.CustomerID
                          };
                          
-            return View(result.ToList());
+            return View(result.ToList().ToPagedList(page ?? 1,10));
         }
 
         public ActionResult GetImage(int id = 1)

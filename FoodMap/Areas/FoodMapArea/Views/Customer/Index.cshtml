@@ -1,6 +1,6 @@
 ﻿@model FoodMap.Areas.FoodMapArea.Models.Shop
 @{
-    ViewBag.Title = "網站首頁";
+    ViewBag.Title = "美食首頁";
 }
 
 @section styles{
@@ -97,6 +97,11 @@
             font-family:'Microsoft JhengHei';
             font-weight:bold;
         }
+        .barfont{
+            font-size:18px;
+            font-family:'Microsoft JhengHei';
+            font-weight:bold;
+        }
     </style>
     
     }
@@ -106,7 +111,7 @@
     <img id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_1.jpg" />
 </div>
 <div class="container">
-    <ul class="breadcrumb">
+    <ul class="breadcrumb barfont">
         <li>首頁</li>
         @if (Request.Cookies["UserName"] == null)
         {

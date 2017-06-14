@@ -8,6 +8,8 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 using System.Data;
+using PagedList;
+using PagedList.Mvc;
 
 namespace FoodMap.Areas.FoodMapArea.Controllers
 {
